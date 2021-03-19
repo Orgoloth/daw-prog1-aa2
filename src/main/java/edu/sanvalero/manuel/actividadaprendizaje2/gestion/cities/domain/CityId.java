@@ -6,7 +6,7 @@ import edu.sanvalero.manuel.actividadaprendizaje2.shared.domain.valueobject.Uuid
 
 public class CityId extends UuidValueObject {
 
-    public CityId(UUID value) {
+    public CityId(UUID value)    {
         super(value);
     }
 }

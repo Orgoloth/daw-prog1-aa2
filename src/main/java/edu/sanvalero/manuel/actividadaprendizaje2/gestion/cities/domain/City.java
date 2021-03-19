@@ -1,9 +1,9 @@
 package edu.sanvalero.manuel.actividadaprendizaje2.gestion.cities.domain;
 
 public final class City {
-    private CityId id;
-    private CityName name;
-    private CityRegion region;
+    private final CityId id;
+    private final CityName name;
+    private final CityRegion region;
 
     public City(CityId id, CityName name, CityRegion region) {
         this.id = id;
@@ -20,7 +20,7 @@ public final class City {
     }
 
     public CityName name() {
-        return name;
+           return name;
     }
 
     public CityRegion region() {
