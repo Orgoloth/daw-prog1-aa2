@@ -1,4 +1,4 @@
-package edu.sanvalero;
+package edu.sanvalero.actividadaprendizaje2;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
