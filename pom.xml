@@ -8,12 +8,10 @@
   <version>1.0</version>
 
   <name>Actividad de aprendizaje 2</name>
-  <url>https://github.com/Orgoloth/sanvalero-programacion</url>
+  <url>https://github.com/Orgoloth/daw-prog1-aa2</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -44,6 +42,28 @@
               <include>**/*TestCase.java</include>
               <include>**/*Should.java</include>
             </includes>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+            <release>14</release>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>edu.sanvalero.App</mainClass>
+              </manifest>
+            </archive>
           </configuration>
         </plugin>
 
