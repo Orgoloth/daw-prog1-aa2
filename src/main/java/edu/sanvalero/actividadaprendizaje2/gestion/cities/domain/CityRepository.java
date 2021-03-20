@@ -9,5 +9,5 @@ public interface CityRepository {
 
     public City search(CityName name) throws Exception;
 
-    public Collection<City> list();
+    public Collection<City> find();
 }

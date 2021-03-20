@@ -57,7 +57,7 @@ public class CityRepositoryPrefilled implements CityRepository {
     }
 
     @Override
-    public Collection<City> list() {
+    public Collection<City> find() {
         return cities.values();
     }
 

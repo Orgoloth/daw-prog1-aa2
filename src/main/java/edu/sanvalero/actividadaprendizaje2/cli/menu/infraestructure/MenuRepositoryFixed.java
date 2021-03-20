@@ -9,7 +9,7 @@ import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuName;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuNotFound;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuRepository;
 
-public class FixedMenuRepository implements MenuRepository {
+public class MenuRepositoryFixed implements MenuRepository {
     private Map<MenuName, Menu> menuMap = new HashMap<>();
 
     @Override

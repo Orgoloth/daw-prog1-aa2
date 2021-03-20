@@ -38,7 +38,7 @@ public class CityRepositoryMemory implements CityRepository {
     }
 
     @Override
-    public Collection<City> list() {
+    public Collection<City> find() {
         return cities.values();
     }
 
