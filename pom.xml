@@ -61,7 +61,7 @@
             <archive>
               <manifest>
                 <addClasspath>true</addClasspath>
-                <mainClass>edu.sanvalero.App</mainClass>
+                <mainClass>edu.sanvalero.actividadaprendizaje2.cli.App</mainClass>
               </manifest>
             </archive>
           </configuration>
