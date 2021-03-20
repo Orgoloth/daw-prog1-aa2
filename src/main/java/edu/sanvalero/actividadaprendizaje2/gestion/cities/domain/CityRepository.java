@@ -7,5 +7,7 @@ public interface CityRepository {
 
     public City search(CityId id);
 
+    public City search(CityName name) throws Exception;
+
     public Collection<City> list();
 }

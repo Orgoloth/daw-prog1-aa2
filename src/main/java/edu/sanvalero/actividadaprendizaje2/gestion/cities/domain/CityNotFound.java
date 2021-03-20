@@ -1,23 +1,14 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.cities.domain;
 
 public class CityNotFound extends IllegalArgumentException {
-    /**
-     *
-     */
-    private static final long serialVersionUID = -8173040227181689839L;
+    private static final long serialVersionUID = -2505453801096539080L;
 
-    private CityId id;
-
-    public CityNotFound(CityId id) {
-        super();
-        this.id = id;
+    public static CityNotFound withId(CityId idNotFound) {
+        return new CityNotFound(idNotFound);
     }
 
-    public String errorCode() {
-        return "Ciudad no encontrada";
+    private CityNotFound(CityId idNotFound) {
+        super("La ciudad con el id" + idNotFound.value() + " no fue encontrada");
     }
 
-    public String errorMessage() {
-        return "La ciudad con el ID: " + id.value() + " no fue encontrada";
-    }
 }

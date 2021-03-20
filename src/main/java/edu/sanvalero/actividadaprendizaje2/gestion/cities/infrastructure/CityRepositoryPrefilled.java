@@ -1,18 +1,37 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.City;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityId;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityNotFound;
+import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 
-public class CityRepositoryMemory implements CityRepository {
+public class CityRepositoryPrefilled implements CityRepository {
     private Map<CityId, City> cities = new HashMap<>();
+
+    public CityRepositoryPrefilled() {
+        List<String[]> defaultCities = new ArrayList<>();
+        defaultCities.add(new String[] { "Zaragoza", "Aragón" });
+        defaultCities.add(new String[] { "Huesca", "Aragón" });
+        defaultCities.add(new String[] { "Teruel", "Aragón" });
+        defaultCities.add(new String[] { "Madrid", "Madrid" });
+        defaultCities.add(new String[] { "Sevilla", "Andalucia" });
+        defaultCities.add(new String[] { "Malaga", "Andalucia" });
+        defaultCities.add(new String[] { "Córdoba", "Andalucia" });
+
+        defaultCities.forEach((data) -> save(
+                City.create(new CityId(UUID.randomUUID()), new CityName(data[0]), new CityRegion(data[1]))));
+
+    }
 
     @Override
     public void save(City city) {
