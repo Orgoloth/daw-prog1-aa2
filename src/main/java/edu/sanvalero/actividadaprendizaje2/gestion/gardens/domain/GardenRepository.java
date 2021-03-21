@@ -6,7 +6,7 @@ public interface GardenRepository {
 
     public void save(Garden garden);
 
-    public Garden search(GardenId id);
+    public Garden find(GardenId id);
 
-    public Collection<Garden> list();
+    public Collection<Garden> search();
 }

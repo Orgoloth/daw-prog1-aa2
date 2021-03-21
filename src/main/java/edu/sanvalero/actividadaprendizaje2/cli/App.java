@@ -2,9 +2,11 @@ package edu.sanvalero.actividadaprendizaje2.cli;
 
 import java.util.Scanner;
 
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.CityFinderController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.CreateCityController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.CreateGardenController;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.CityFinderController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.GardenFinderController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.GardenUpdaterController;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.Menu;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuDescription;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuName;
@@ -18,12 +20,18 @@ import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure.CityRepositoryPrefilled;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.create.CreateGardenCommandHandler;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.create.GardenCreator;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.GardenFinder;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.GardenFinderCommandHandler;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.print.GardenPrinter;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.print.GardenPrinterCommandHandler;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.update.GardenUpdater;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.update.GardenUpdaterCommandHandler;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.infraestructure.GardenRepositoryMemory;
 import edu.sanvalero.actividadaprendizaje2.shared.domain.bus.command.CommandBus;
 
 public class App {
-    private static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
 
     private MenuRepository menuRepository;
     private CityRepository cityRepository;
@@ -68,16 +76,36 @@ public class App {
         cityRepository = new CityRepositoryPrefilled();
         gardenRepository = new GardenRepositoryMemory();
 
-        menuRepository.save(new Menu(new MenuName("crearCiudad"), new MenuDescription("Crear una ciudad"),
+        /*
+         * Casos del enunciado
+         */
+
+        commandBus.subscribe(new CreateGardenCommandHandler(new GardenCreator(gardenRepository, cityRepository)));
+        menuRepository.save(
+                new Menu(new MenuName("crearparque"), new MenuDescription("Añadir un parque a una determinada ciudad."),
+                        new CreateGardenController(commandBus)));
+
+        commandBus.subscribe(new GardenFinderCommandHandler(new GardenFinder(gardenRepository)));
+        menuRepository.save(new Menu(new MenuName("listarparques"),
+                new MenuDescription("Listar todos los parques (se le preguntarán filtros de ciudad y autonomía)."),
+                new GardenFinderController(commandBus)));
+
+        commandBus.subscribe(new GardenUpdaterCommandHandler(new GardenUpdater(gardenRepository)));
+        commandBus.subscribe(new GardenPrinterCommandHandler(new GardenPrinter(gardenRepository)));
+        menuRepository.save(new Menu(new MenuName("actualizarparque"),
+                new MenuDescription("Actualizar los datos de un parque."), new GardenUpdaterController(commandBus)));
+
+        /*
+         * Casos auxiliares
+         */
+
+        menuRepository.save(new Menu(new MenuName("crearCiudad"), new MenuDescription("Crear una ciudad."),
                 new CreateCityController(commandBus)));
         commandBus.subscribe(new CreateCityCommandHandler(new CityCreator(cityRepository)));
 
-        commandBus.subscribe(new CreateGardenCommandHandler(new GardenCreator(gardenRepository, cityRepository)));
-        menuRepository.save(new Menu(new MenuName("crearParque"), new MenuDescription("Crear un parque en una ciudad"),
-                new CreateGardenController(commandBus)));
-
         commandBus.subscribe(new CityFinderCommandHandler(new CityFinder(cityRepository)));
-        menuRepository.save(new Menu(new MenuName("listarciudades"), new MenuDescription("Listar todas las ciudades"),
+        menuRepository.save(new Menu(new MenuName("listarciudades"), new MenuDescription("Listar todas las ciudades."),
                 new CityFinderController(commandBus)));
+
     }
 }

@@ -12,6 +12,5 @@ public class CityFinderController extends Controller {
     @Override
     public void invoke() throws Exception {
         dispatch(new CityFinderCommand());
-
     }
 }

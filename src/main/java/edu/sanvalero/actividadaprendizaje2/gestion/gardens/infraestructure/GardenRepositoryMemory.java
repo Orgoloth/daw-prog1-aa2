@@ -18,13 +18,13 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Garden search(GardenId id) {
+    public Garden find(GardenId id) {
         checkGardenExists(id);
         return gardens.get(id);
     }
 
     @Override
-    public Collection<Garden> list() {
+    public Collection<Garden> search() {
         return gardens.values();
     }
 
