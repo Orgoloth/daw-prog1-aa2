@@ -1,10 +1,11 @@
 package edu.sanvalero.actividadaprendizaje2.cli;
 
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.CityPrinterAllController;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.GardenCreatorController;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.GardenPrinterByCityController;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.GardenPrinterByNameController;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.GardenPrinterByRegionController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterAllController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenCreatorController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByCityController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByNameController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByRegionController;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.Menu;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuDescription;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuName;

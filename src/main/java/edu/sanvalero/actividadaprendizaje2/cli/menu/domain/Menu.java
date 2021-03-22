@@ -1,6 +1,6 @@
 package edu.sanvalero.actividadaprendizaje2.cli.menu.domain;
 
-import edu.sanvalero.actividadaprendizaje2.cli.Controller;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
 
 public class Menu {
     private MenuName name;

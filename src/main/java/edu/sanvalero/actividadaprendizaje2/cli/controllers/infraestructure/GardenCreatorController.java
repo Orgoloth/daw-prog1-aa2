@@ -1,13 +1,12 @@
-package edu.sanvalero.actividadaprendizaje2.cli.controllers;
+package edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure;
 
 import edu.sanvalero.actividadaprendizaje2.cli.Asker;
-import edu.sanvalero.actividadaprendizaje2.cli.Controller;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.create.GardenCreator;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.UuidValueObject;
 
-public class GardenCreatorController implements Controller {
+public class GardenCreatorController implements edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller {
     private final GardenCreator creator;
 
     private GardenCreatorController(GardenRepository gardenRepository, CityRepository cityRepository) {

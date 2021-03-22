@@ -1,7 +1,7 @@
-package edu.sanvalero.actividadaprendizaje2.cli.controllers;
+package edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure;
 
 import edu.sanvalero.actividadaprendizaje2.cli.Asker;
-import edu.sanvalero.actividadaprendizaje2.cli.Controller;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.print.GardenPrinter;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
