@@ -13,6 +13,6 @@ public class CityFinder {
     }
 
     public Collection<City> find() {
-        return repository.find();
+        return repository.all();
     }
 }

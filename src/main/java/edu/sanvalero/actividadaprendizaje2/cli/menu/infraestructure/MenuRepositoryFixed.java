@@ -18,13 +18,13 @@ public class MenuRepositoryFixed implements MenuRepository {
     }
 
     @Override
-    public Menu search(MenuName command) {
-        checkMenuExists(command);
-        return menuMap.get(command);
+    public Menu find(MenuName name) {
+        checkMenuExists(name);
+        return menuMap.get(name);
     }
 
     @Override
-    public Collection<Menu> list() {
+    public Collection<Menu> all() {
         return menuMap.values();
     }
 

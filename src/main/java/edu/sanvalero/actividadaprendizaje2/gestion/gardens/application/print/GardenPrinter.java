@@ -1,8 +1,5 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.print;
 
-import java.util.Iterator;
-
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
 public class GardenPrinter {
@@ -12,15 +9,33 @@ public class GardenPrinter {
         this.repository = repository;
     }
 
-    public void printByName(String gardenToPrint) {
-        Iterator<Garden> it = repository.search().iterator();
-        while (it.hasNext()) {
-            Garden currentGarden = it.next();
-            if (currentGarden.name().value().toUpperCase().contains(gardenToPrint.toUpperCase())) {
-                System.out.println(currentGarden.id().value() + "\t" + currentGarden.name().value() + "\t"
-                        + currentGarden.extension().value() + "\t" + currentGarden.city().name().value() + "\t"
-                        + currentGarden.city().region().value());
-            }
-        }
+    public void printByCityName(String rawCityName) {
+        // TODO: Mover logica de filtrado al repositorio
+        repository.all().forEach(garden -> {
+            if (garden.city().name().value().toLowerCase().contains(rawCityName.toLowerCase()))
+                System.out
+                        .println(garden.id().value() + "\t" + garden.name().value() + "\t" + garden.extension().value()
+                                + "\t" + garden.city().name().value() + "\t" + garden.city().region().value());
+        });
+    }
+
+    public void printByCityRegion(String rawCityRegion) {
+        // TODO: Mover logica de filtrado al repositorio
+        repository.all().forEach(garden -> {
+            if (garden.city().region().value().toLowerCase().contains(rawCityRegion.toLowerCase()))
+                System.out
+                        .println(garden.id().value() + "\t" + garden.name().value() + "\t" + garden.extension().value()
+                                + "\t" + garden.city().name().value() + "\t" + garden.city().region().value());
+        });
+    }
+
+    public void printByGardenName(String rawGardenName) {
+        // TODO: Mover logica de filtrado al repositorio
+        repository.all().forEach(garden -> {
+            if (garden.name().value().toLowerCase().contains(rawGardenName.toLowerCase()))
+                System.out
+                        .println(garden.id().value() + "\t" + garden.name().value() + "\t" + garden.extension().value()
+                                + "\t" + garden.city().name().value() + "\t" + garden.city().region().value());
+        });
     }
 }

@@ -24,7 +24,7 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Collection<Garden> search() {
+    public Collection<Garden> all() {
         return gardens.values();
     }
 

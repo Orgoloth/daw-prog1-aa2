@@ -8,5 +8,5 @@ public interface GardenRepository {
 
     public Garden find(GardenId id);
 
-    public Collection<Garden> search();
+    public Collection<Garden> all();
 }

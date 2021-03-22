@@ -45,7 +45,7 @@ public class CityRepositoryPrefilled implements CityRepository {
     }
 
     @Override
-    public City search(CityName name) throws Exception {
+    public City find(CityName name) throws Exception {
         Iterator<City> it = cities.values().iterator();
         while (it.hasNext()) {
             City iterationCity = it.next();
@@ -57,7 +57,7 @@ public class CityRepositoryPrefilled implements CityRepository {
     }
 
     @Override
-    public Collection<City> find() {
+    public Collection<City> all() {
         return cities.values();
     }
 

@@ -18,11 +18,11 @@ public class GardenFinder {
         // TODO: esta logica habria que pasarla al repositorio
 
         if (filterCityName.length() == 0 && filterCityRegion.length() == 0) {
-            return repository.search();
+            return repository.all();
         }
 
         Collection<Garden> results = new ArrayList<>();
-        Iterator<Garden> it = repository.search().iterator();
+        Iterator<Garden> it = repository.all().iterator();
         while (it.hasNext()) {
             Garden actualGarden = it.next();
             if ((filterCityName.length() > 0

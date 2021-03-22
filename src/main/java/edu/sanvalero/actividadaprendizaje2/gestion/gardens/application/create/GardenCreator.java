@@ -12,20 +12,20 @@ import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
 public class GardenCreator {
-    private final GardenRepository repository;
+    private final GardenRepository gardenRepository;
     private final CityRepository cityRepository;
 
-    public GardenCreator(GardenRepository repository, CityRepository cityRepository) {
-        this.repository = repository;
+    public GardenCreator(GardenRepository gardenRepository, CityRepository cityRepository) {
+        this.gardenRepository = gardenRepository;
         this.cityRepository = cityRepository;
     }
 
     public void create(UUID id, String rawName, int rawExtension, String cityName) throws Exception {
         try {
-            City city = cityRepository.search(new CityName(cityName));
+            City city = cityRepository.find(new CityName(cityName));
             Garden newGarden = Garden.create(new GardenId(id), new GardenName(rawName),
                     new GardenExtension(rawExtension), city);
-            repository.save(newGarden);
+            gardenRepository.save(newGarden);
         } catch (Exception ex) {
             System.out.println("Error al buscar la ciudad por el nombre: " + cityName + ", no se creará el parque");
         }

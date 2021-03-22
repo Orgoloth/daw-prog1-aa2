@@ -4,8 +4,13 @@ import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.StringValue
 
 public class MenuDescription extends StringValueObject {
 
-    public MenuDescription(String value) {
+    private MenuDescription(String value) {
         super(value);
+    }
+
+    public static MenuDescription create(String value) {
+        return new MenuDescription(value);
+
     }
 
 }

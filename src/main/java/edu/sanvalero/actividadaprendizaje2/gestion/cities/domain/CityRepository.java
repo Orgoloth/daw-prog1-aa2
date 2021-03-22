@@ -5,9 +5,9 @@ import java.util.Collection;
 public interface CityRepository {
     public void save(City city);
 
+    public City find(CityName name) throws Exception;
+
     public City search(CityId id);
 
-    public City search(CityName name) throws Exception;
-
-    public Collection<City> find();
+    public Collection<City> all();
 }

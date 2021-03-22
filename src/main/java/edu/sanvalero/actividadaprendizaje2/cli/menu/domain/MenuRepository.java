@@ -5,7 +5,7 @@ import java.util.Collection;
 public interface MenuRepository {
     public void save(Menu menu);
 
-    public Menu search(MenuName command);
+    public Menu find(MenuName name);
 
-    public Collection<Menu> list();
+    public Collection<Menu> all();
 }
