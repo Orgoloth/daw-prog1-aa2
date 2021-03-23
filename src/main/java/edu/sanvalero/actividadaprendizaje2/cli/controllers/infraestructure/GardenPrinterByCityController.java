@@ -19,6 +19,7 @@ public class GardenPrinterByCityController implements Controller {
     @Override
     public void invoke() throws Exception {
         String rawCityName = askCityName();
+        //TODO en base a la cadena, recibir ID's concretos que coincidan, desde el finder, y pasar esa lista al printer, separar responsabilidades.
         printer.printByCityName(rawCityName);
     }
 
