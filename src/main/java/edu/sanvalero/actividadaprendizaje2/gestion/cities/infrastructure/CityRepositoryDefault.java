@@ -29,7 +29,7 @@ public class CityRepositoryDefault implements CityRepository {
         defaultCities.add(new String[] { "Córdoba", "Andalucia" });
 
         defaultCities.forEach((data) -> save(
-                City.create(new CityId(UUID.randomUUID()), new CityName(data[0]), new CityRegion(data[1]))));
+                City.create(CityId.create(UUID.randomUUID()), CityName.create(data[0]), CityRegion.create(data[1]))));
 
     }
 

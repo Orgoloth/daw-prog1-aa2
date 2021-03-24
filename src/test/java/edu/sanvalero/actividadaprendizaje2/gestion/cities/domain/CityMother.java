@@ -4,6 +4,7 @@ import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.UuidValueOb
 
 public final class CityMother {
     public static City create() {
-        return new City(new CityId(UuidValueObject.random()), new CityName("Test city"), new CityRegion("Test region"));
+        return new City(CityId.create(UuidValueObject.random()), CityName.create("Test city"),
+                CityRegion.create("Test region"));
     }
 }

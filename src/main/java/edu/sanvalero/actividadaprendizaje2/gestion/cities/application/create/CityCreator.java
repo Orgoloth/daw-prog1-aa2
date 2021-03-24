@@ -16,7 +16,7 @@ public final class CityCreator {
     }
 
     public void create(UUID id, String rawName, String rawRegion) {
-        City newCity = City.create(new CityId(id), new CityName(rawName), new CityRegion(rawRegion));
+        City newCity = City.create(CityId.create(id), CityName.create(rawName), CityRegion.create(rawRegion));
         repository.save(newCity);
     }
 

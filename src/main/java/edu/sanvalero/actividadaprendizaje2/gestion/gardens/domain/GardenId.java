@@ -5,7 +5,11 @@ import java.util.UUID;
 import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.UuidValueObject;
 
 public class GardenId extends UuidValueObject {
-    public GardenId(UUID value) {
+    private GardenId(UUID value) {
         super(value);
+    }
+
+    public static GardenId create(UUID value) {
+        return new GardenId(value);
     }
 }

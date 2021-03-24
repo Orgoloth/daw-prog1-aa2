@@ -6,7 +6,11 @@ import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.UuidValueOb
 
 public class CityId extends UuidValueObject {
 
-    public CityId(UUID value)    {
+    private CityId(UUID value) {
         super(value);
+    }
+
+    public static CityId create(UUID value) {
+        return new CityId(value);
     }
 }

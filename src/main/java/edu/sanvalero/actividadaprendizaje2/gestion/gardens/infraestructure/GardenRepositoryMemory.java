@@ -1,11 +1,15 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.infraestructure;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
+import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenId;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenNotFound;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
@@ -18,9 +22,45 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Garden find(GardenId id) {
+    public Garden find(GardenId id) throws GardenNotFound {
         checkGardenExists(id);
         return gardens.get(id);
+    }
+
+    @Override
+    public Collection<Garden> searchByCityName(CityName searchedCityName) {
+        Collection<Garden> results = new ArrayList<>();
+
+        for (Garden garden : gardens.values()) {
+            if (garden.city().name().contains(searchedCityName)) {
+                results.add(garden);
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public Collection<Garden> searchByCityRegion(CityRegion searchedCityRegion) {
+        Collection<Garden> results = new ArrayList<>();
+
+        for (Garden garden : gardens.values()) {
+            if (garden.city().region().contains(searchedCityRegion)) {
+                results.add(garden);
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public Collection<Garden> searchByGardenName(GardenName searchedGardenName) {
+        Collection<Garden> results = new ArrayList<>();
+
+        for (Garden garden : gardens.values()) {
+            if (garden.name().contains(searchedGardenName)) {
+                results.add(garden);
+            }
+        }
+        return results;
     }
 
     @Override
@@ -33,4 +73,5 @@ public class GardenRepositoryMemory implements GardenRepository {
             throw GardenNotFound.withId(id);
         }
     }
+
 }

@@ -12,6 +12,10 @@ public abstract class StringValueObject {
         return value;
     }
 
+    public boolean contains(StringValueObject otheStringValueObject) {
+        return value.toLowerCase().indexOf(otheStringValueObject.value().toLowerCase()) >= 0;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

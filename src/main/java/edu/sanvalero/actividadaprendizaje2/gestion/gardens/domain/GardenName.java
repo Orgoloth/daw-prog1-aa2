@@ -4,8 +4,12 @@ import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.StringValue
 
 public class GardenName extends StringValueObject {
 
-    public GardenName(String value) {
+    private GardenName(String value) {
         super(value);
+    }
+
+    public static GardenName create(String value) {
+        return new GardenName(value);
     }
 
 }

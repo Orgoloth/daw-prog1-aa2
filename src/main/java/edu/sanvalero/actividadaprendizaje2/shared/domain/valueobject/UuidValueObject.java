@@ -41,4 +41,9 @@ public abstract class UuidValueObject {
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return uuid.toString();
+    }
 }
