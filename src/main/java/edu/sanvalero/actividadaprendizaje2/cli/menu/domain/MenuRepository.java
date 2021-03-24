@@ -1,11 +1,11 @@
 package edu.sanvalero.actividadaprendizaje2.cli.menu.domain;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface MenuRepository {
     public void save(Menu menu);
 
-    public Menu find(MenuName name);
+    public Menu find(int position);
 
-    public Collection<Menu> all();
+    public List<Menu> all();
 }

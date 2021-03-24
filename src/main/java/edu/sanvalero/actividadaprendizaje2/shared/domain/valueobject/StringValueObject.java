@@ -37,4 +37,9 @@ public abstract class StringValueObject {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
+
 }

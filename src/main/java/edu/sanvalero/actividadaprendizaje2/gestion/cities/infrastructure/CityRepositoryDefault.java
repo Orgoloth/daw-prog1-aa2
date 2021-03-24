@@ -15,10 +15,10 @@ import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityNotFound;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 
-public class CityRepositoryPrefilled implements CityRepository {
+public class CityRepositoryDefault implements CityRepository {
     private Map<CityId, City> cities = new HashMap<>();
 
-    public CityRepositoryPrefilled() {
+    public CityRepositoryDefault() {
         List<String[]> defaultCities = new ArrayList<>();
         defaultCities.add(new String[] { "Zaragoza", "Aragón" });
         defaultCities.add(new String[] { "Huesca", "Aragón" });

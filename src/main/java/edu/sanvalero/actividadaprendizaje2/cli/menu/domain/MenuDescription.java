@@ -10,7 +10,6 @@ public class MenuDescription extends StringValueObject {
 
     public static MenuDescription create(String value) {
         return new MenuDescription(value);
-
     }
 
 }
