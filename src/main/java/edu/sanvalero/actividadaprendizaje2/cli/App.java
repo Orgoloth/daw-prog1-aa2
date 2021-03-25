@@ -42,6 +42,9 @@ public class App {
         }
     }
 
+    /**
+     * En esta clase preparamos las implementaciones concretas de los repositorios
+     */
     private void bootstrap() {
         menuRepository = new MenuRepositoryMemory();
         cityRepository = new CityRepositoryDefault();
