@@ -2,6 +2,7 @@ package edu.sanvalero.actividadaprendizaje2.cli;
 
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterAllController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterByMinimumSumOfExtension;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenCreatorController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenDeleterByCity;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByCityController;
@@ -77,7 +78,7 @@ public class App {
 
         menuCreator.create(
                 "(PENDIENTE) Listar el nombre de todas las ciudades que contengan parques cuya suma total de su extensión, sea mayor que la que quiera el usuario.",
-                null);
+                CityPrinterByMinimumSumOfExtension.create(gardenRepository));
 
         menuCreator.create("Listar todas las ciudades.", CityPrinterAllController.create(cityRepository));
         menuCreator.create("Salir.", null);

@@ -8,7 +8,7 @@ public class Garden {
     private GardenExtension extension;
     private City city;
 
-    public Garden(GardenId gardenId, GardenName gardenName, GardenExtension gardenExtension, City gardenCity) {
+    private Garden(GardenId gardenId, GardenName gardenName, GardenExtension gardenExtension, City gardenCity) {
         this.id = gardenId;
         this.name = gardenName;
         this.extension = gardenExtension;
