@@ -9,23 +9,25 @@ import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.Gard
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.print.GardenPrinter;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
-public class GardenPrinterByCityController implements Controller {
+public class GardenPrinterByCityNameAndMinimumExtensionController implements Controller {
     private final GardenFinder finder;
     private final GardenPrinter printer;
 
-    private GardenPrinterByCityController(GardenRepository repository) {
+    private GardenPrinterByCityNameAndMinimumExtensionController(GardenRepository repository) {
         this.finder = new GardenFinder(repository);
         this.printer = new GardenPrinter(repository);
     }
 
-    public static GardenPrinterByCityController create(GardenRepository repository) {
-        return new GardenPrinterByCityController(repository);
+    public static GardenPrinterByCityNameAndMinimumExtensionController create(GardenRepository repository) {
+        return new GardenPrinterByCityNameAndMinimumExtensionController(repository);
     }
 
     @Override
     public void invoke() throws Exception {
         String rawCityName = askCityName();
-        List<UUID> results = finder.searchByCityName(rawCityName);
+        int rawMinimumGardenExtension = askMinimumGardenExtension();
+
+        List<UUID> results = finder.searchByCityNameAndMinimumExtension(rawCityName, rawMinimumGardenExtension);
         for (UUID rawUuid : results) {
             printer.print(rawUuid);
         }
@@ -34,5 +36,10 @@ public class GardenPrinterByCityController implements Controller {
     private String askCityName() {
         String rawCityName = Asker.text("Introduzca el nombre de la ciudad (o parte):\t");
         return rawCityName;
+    }
+
+    private int askMinimumGardenExtension() {
+        int rawMinimumGardenExtension = Asker.number("Introduzca la extensión mínima:\t");
+        return rawMinimumGardenExtension;
     }
 }

@@ -11,8 +11,8 @@ public abstract class IntValueObject {
         return value;
     }
 
-    public boolean isBiggerThan(IntValueObject other) {
-        return value() > other.value();
+    public boolean isEqualOrBiggerThan(IntValueObject other) {
+        return value() >= other.value();
     }
 
     @Override

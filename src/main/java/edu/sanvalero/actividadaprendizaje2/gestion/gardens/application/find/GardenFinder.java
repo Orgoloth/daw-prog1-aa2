@@ -8,6 +8,7 @@ import java.util.UUID;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenExtension;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
@@ -36,6 +37,13 @@ public class GardenFinder {
         return results;
     }
 
+    public List<UUID> searchByCityNameAndMinimumExtension(String rawCityName, int rawMinimumGardenExtension) {
+        Collection<Garden> founds = repository.searchByCityNameAndMinimumGardenExtension(CityName.create(rawCityName),
+                GardenExtension.create(rawMinimumGardenExtension));
+        List<UUID> results = extractUuids(founds);
+        return results;
+    }
+
     private List<UUID> extractUuids(Collection<Garden> founds) {
         List<UUID> results = new ArrayList<>();
         for (Garden garden : founds) {
@@ -43,5 +51,4 @@ public class GardenFinder {
         }
         return results;
     }
-
 }

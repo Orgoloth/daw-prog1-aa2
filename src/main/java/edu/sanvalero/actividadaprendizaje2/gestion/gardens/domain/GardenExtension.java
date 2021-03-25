@@ -8,4 +8,8 @@ public class GardenExtension extends IntValueObject {
         super(value);
     }
 
+    public static GardenExtension create(int rawGardenExtension) {
+        return new GardenExtension(rawGardenExtension);
+    }
+
 }

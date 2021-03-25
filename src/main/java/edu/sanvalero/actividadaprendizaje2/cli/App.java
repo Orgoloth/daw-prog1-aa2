@@ -4,6 +4,7 @@ import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterAllController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenCreatorController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByCityController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByCityNameAndMinimumExtensionController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByNameController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByRegionController;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.application.MenuCreator;
@@ -52,14 +53,32 @@ public class App {
 
         MenuCreator menuCreator = new MenuCreator(menuRepository);
 
-        menuCreator.create("Listar todas las ciudades.", CityPrinterAllController.create(cityRepository));
-        menuCreator.create("Crear un parque.", GardenCreatorController.create(gardenRepository, cityRepository));
-        menuCreator.create("Listar todos los parques de una ciudad.",
+        menuCreator.create("Listar todos los parques de una determinada ciudad por nombre.",
                 GardenPrinterByCityController.create(gardenRepository));
-        menuCreator.create("Listar todos los parques de una region.",
+
+        menuCreator.create("Listar todos los parques de una cierta comunidad autónoma por nombre.",
                 GardenPrinterByRegionController.create(gardenRepository));
-        menuCreator.create("Listar todos los parques cuyo nombre contenga una determinada cadena.",
+
+        menuCreator.create(
+                "Añadir un parque a una determinada ciudad (por nombre de ciudad), si la ciudad no existe no se añade y se informa de ello.",
+                GardenCreatorController.create(gardenRepository, cityRepository));
+
+        menuCreator.create("(PENDIENTE) Actualizar la información de un parque.", null);
+
+        menuCreator.create("Seleccionar todos los parques cuyo nombre contenga una determinada cadena.",
                 GardenPrinterByNameController.create(gardenRepository));
+
+        menuCreator.create(
+                "Devolver el número de parques de una determinada ciudad que tengan una extensión individual mayor que la que desee el usuario.",
+                GardenPrinterByCityNameAndMinimumExtensionController.create(gardenRepository));
+
+        menuCreator.create("(PENDIENTE) Borrar todos los parques de una determinada ciudad por nombre.", null);
+
+        menuCreator.create(
+                "(PENDIENTE) Listar el nombre de todas las ciudades que contengan parques cuya suma total de su extensión, sea mayor que la que quiera el usuario.",
+                null);
+
+        menuCreator.create("Listar todas las ciudades.", CityPrinterAllController.create(cityRepository));
         menuCreator.create("Salir.", null);
     }
 
