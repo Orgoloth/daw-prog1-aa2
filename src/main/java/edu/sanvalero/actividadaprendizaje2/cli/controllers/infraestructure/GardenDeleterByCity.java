@@ -5,29 +5,29 @@ import java.util.UUID;
 
 import edu.sanvalero.actividadaprendizaje2.cli.Asker;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.delete.GardenDeleter;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.GardenFinder;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.print.GardenPrinter;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
-public class GardenPrinterByCityController implements Controller {
+public class GardenDeleterByCity implements Controller {
     private final GardenFinder finder;
-    private final GardenPrinter printer;
+    private final GardenDeleter deleter;
 
-    private GardenPrinterByCityController(GardenRepository repository) {
+    private GardenDeleterByCity(GardenRepository repository) {
         this.finder = GardenFinder.create(repository);
-        this.printer =  GardenPrinter.create(repository);
+        this.deleter = GardenDeleter.create(repository);
     }
 
-    public static GardenPrinterByCityController create(GardenRepository repository) {
-        return new GardenPrinterByCityController(repository);
+    public static GardenDeleterByCity create(GardenRepository repository) {
+        return new GardenDeleterByCity(repository);
     }
 
     @Override
     public void invoke() throws Exception {
         String rawCityName = askCityName();
         List<UUID> results = finder.searchByCityName(rawCityName);
-        for (UUID rawUuid : results) {
-            printer.print(rawUuid);
+        for (UUID result : results) {
+            deleter.delete(result);
         }
     }
 

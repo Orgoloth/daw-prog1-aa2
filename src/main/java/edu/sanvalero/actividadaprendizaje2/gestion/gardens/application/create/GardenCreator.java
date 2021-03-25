@@ -15,12 +15,16 @@ public class GardenCreator {
     private final GardenRepository gardenRepository;
     private final CityRepository cityRepository;
 
-    public GardenCreator(GardenRepository gardenRepository, CityRepository cityRepository) {
+    private GardenCreator(GardenRepository gardenRepository, CityRepository cityRepository) {
         this.gardenRepository = gardenRepository;
         this.cityRepository = cityRepository;
     }
 
-    public void create(UUID id, String rawName, int rawExtension, String cityName) throws Exception {
+    public static GardenCreator create(GardenRepository gardenRepository, CityRepository cityRepository) {
+        return new GardenCreator(gardenRepository, cityRepository);
+    }
+
+    public void createNewGarden(UUID id, String rawName, int rawExtension, String cityName) throws Exception {
         try {
             City city = cityRepository.find(CityName.create(cityName));
             Garden newGarden = Garden.create(GardenId.create(id), GardenName.create(rawName),

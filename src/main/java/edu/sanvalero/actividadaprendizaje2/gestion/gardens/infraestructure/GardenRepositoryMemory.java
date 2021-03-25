@@ -23,6 +23,12 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
+    public void delete(GardenId id) throws GardenNotFound {
+        checkGardenExists(id);
+        gardens.remove(id);
+    }
+
+    @Override
     public Garden find(GardenId id) throws GardenNotFound {
         checkGardenExists(id);
         return gardens.get(id);
@@ -70,7 +76,8 @@ public class GardenRepositoryMemory implements GardenRepository {
         Collection<Garden> results = new ArrayList<>();
 
         for (Garden garden : gardens.values()) {
-            if (garden.city().name().contains(searchedCityName) && garden.extension().isEqualOrBiggerThan(minimumGardenExtension)) {
+            if (garden.city().name().contains(searchedCityName)
+                    && garden.extension().isEqualOrBiggerThan(minimumGardenExtension)) {
                 results.add(garden);
             }
         }

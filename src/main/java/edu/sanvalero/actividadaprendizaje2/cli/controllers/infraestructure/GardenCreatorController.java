@@ -11,7 +11,7 @@ public class GardenCreatorController implements Controller {
     private final GardenCreator creator;
 
     private GardenCreatorController(GardenRepository gardenRepository, CityRepository cityRepository) {
-        this.creator = new GardenCreator(gardenRepository, cityRepository);
+        this.creator = GardenCreator.create(gardenRepository, cityRepository);
     }
 
     public static GardenCreatorController create(GardenRepository gardenRepository, CityRepository cityRepository) {
@@ -24,7 +24,7 @@ public class GardenCreatorController implements Controller {
         int rawExtension = askExtension();
         String rawCity = askCityName();
 
-        creator.create(UuidValueObject.random(), rawName, rawExtension, rawCity);
+        creator.createNewGarden(UuidValueObject.random(), rawName, rawExtension, rawCity);
     }
 
     private String askName() {

@@ -14,8 +14,8 @@ public class GardenPrinterByNameController implements Controller {
     private final GardenPrinter printer;
 
     private GardenPrinterByNameController(GardenRepository repository) {
-        this.finder = new GardenFinder(repository);
-        this.printer = new GardenPrinter(repository);
+        this.finder = GardenFinder.create(repository);
+        this.printer = GardenPrinter.create(repository);
     }
 
     public static GardenPrinterByNameController create(GardenRepository repository) {

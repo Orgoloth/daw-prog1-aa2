@@ -9,6 +9,8 @@ public interface GardenRepository {
 
     public void save(Garden garden);
 
+    public void delete(GardenId id) throws GardenNotFound;
+
     public Garden find(GardenId id) throws GardenNotFound;
 
     public Collection<Garden> searchByCityName(CityName searchedCityName);

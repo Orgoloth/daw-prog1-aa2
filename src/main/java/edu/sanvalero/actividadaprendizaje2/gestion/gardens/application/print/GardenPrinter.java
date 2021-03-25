@@ -9,35 +9,13 @@ import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenReposito
 public class GardenPrinter {
     private final GardenRepository repository;
 
-    public GardenPrinter(GardenRepository repository) {
+    private GardenPrinter(GardenRepository repository) {
         this.repository = repository;
     }
 
-    // public void printByCityName(String rawCityName) {
-    // CityName cityName = CityName.create(rawCityName);
-    // Collection<Garden> results = repository.searchByCityName(cityName);
-    // printResults(results);
-    // }
-
-    // public void printByCityRegion(String rawCityRegion) {
-    // CityRegion cityRegion = CityRegion.create(rawCityRegion);
-    // Collection<Garden> results = repository.searchByCityRegion(cityRegion);
-    // printResults(results);
-    // }
-
-    // public void printByGardenName(String rawGardenName) {
-    // GardenName gardenName =GardenName.create(rawGardenName);
-    // Collection<Garden> results = repository.searchByGardenName(gardenName);
-    // printResults(results);
-    // }
-
-    // private void printResults(Collection<Garden> results) {
-    // for (Garden garden : results) {
-    // System.out.println(garden.id() + "\t" + garden.name() + "\t" +
-    // garden.extension() + "\t"
-    // + garden.city().name() + "\t" + garden.city().region());
-    // }
-    // }
+    public static GardenPrinter create(GardenRepository repository) {
+        return new GardenPrinter(repository);
+    }
 
     public void print(UUID rawUuid) {
         Garden foundGarden = repository.find(GardenId.create(rawUuid));

@@ -14,8 +14,8 @@ public class GardenPrinterByCityNameAndMinimumExtensionController implements Con
     private final GardenPrinter printer;
 
     private GardenPrinterByCityNameAndMinimumExtensionController(GardenRepository repository) {
-        this.finder = new GardenFinder(repository);
-        this.printer = new GardenPrinter(repository);
+        this.finder = GardenFinder.create(repository);
+        this.printer = GardenPrinter.create(repository);
     }
 
     public static GardenPrinterByCityNameAndMinimumExtensionController create(GardenRepository repository) {

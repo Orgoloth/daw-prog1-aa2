@@ -3,6 +3,7 @@ package edu.sanvalero.actividadaprendizaje2.cli;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterAllController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenCreatorController;
+import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenDeleterByCity;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByCityController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByCityNameAndMinimumExtensionController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.GardenPrinterByNameController;
@@ -72,7 +73,7 @@ public class App {
                 "Devolver el número de parques de una determinada ciudad que tengan una extensión individual mayor que la que desee el usuario.",
                 GardenPrinterByCityNameAndMinimumExtensionController.create(gardenRepository));
 
-        menuCreator.create("(PENDIENTE) Borrar todos los parques de una determinada ciudad por nombre.", null);
+        menuCreator.create("Borrar todos los parques de una determinada ciudad por nombre.", GardenDeleterByCity.create(gardenRepository));
 
         menuCreator.create(
                 "(PENDIENTE) Listar el nombre de todas las ciudades que contengan parques cuya suma total de su extensión, sea mayor que la que quiera el usuario.",

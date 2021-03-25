@@ -15,8 +15,12 @@ import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenReposito
 public class GardenFinder {
     private final GardenRepository repository;
 
-    public GardenFinder(GardenRepository repository) {
+    private GardenFinder(GardenRepository repository) {
         this.repository = repository;
+    }
+
+    public static GardenFinder create(GardenRepository repository) {
+        return new GardenFinder(repository);
     }
 
     public List<UUID> searchByCityName(String rawCityName) {
