@@ -17,6 +17,8 @@ public class CityPrinterByMinimumSumOfExtension implements Controller {
     @Override
     public void invoke() throws Exception {
         // TODO Auto-generated method stub
+        // Buscar parque por nombre
+        // Crear nuevo parque con el mismo id y persistirlo
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
