@@ -32,9 +32,7 @@ public abstract class IntValueObject {
         if (getClass() != obj.getClass())
             return false;
         IntValueObject other = (IntValueObject) obj;
-        if (value != other.value)
-            return false;
-        return true;
+        return value == other.value;
     }
 
     @Override

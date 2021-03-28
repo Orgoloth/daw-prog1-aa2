@@ -12,8 +12,8 @@ public abstract class StringValueObject {
         return value;
     }
 
-    public boolean contains(StringValueObject otheStringValueObject) {
-        return value.toLowerCase().indexOf(otheStringValueObject.value().toLowerCase()) >= 0;
+    public boolean contains(StringValueObject otherStringValueObject) {
+        return value.toLowerCase().contains(otherStringValueObject.value().toLowerCase());
     }
 
     @Override
@@ -34,11 +34,10 @@ public abstract class StringValueObject {
             return false;
         StringValueObject other = (StringValueObject) obj;
         if (value == null) {
-            if (other.value != null)
-                return false;
-        } else if (!value.equalsIgnoreCase(other.value))
-            return false;
-        return true;
+            return other.value == null;
+        } else {
+            return value.equalsIgnoreCase(other.value);
+        }
     }
 
     @Override

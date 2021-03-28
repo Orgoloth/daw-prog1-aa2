@@ -33,8 +33,7 @@ public class GardenPrinterByNameController implements Controller {
     }
 
     private String askGardenName() {
-        String rawGardenName = Asker.text("Introduzca el parte del nombre del parque:\t");
-        return rawGardenName;
+        return Asker.text("Introduzca el parte del nombre del parque:\t");
     }
 
 }
