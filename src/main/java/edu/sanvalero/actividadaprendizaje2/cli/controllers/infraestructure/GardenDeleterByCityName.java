@@ -9,17 +9,17 @@ import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.delete.Ga
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.GardenFinder;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
-public class GardenDeleterByCity implements Controller {
+public class GardenDeleterByCityName implements Controller {
     private final GardenFinder finder;
     private final GardenDeleter deleter;
 
-    private GardenDeleterByCity(GardenRepository repository) {
+    private GardenDeleterByCityName(GardenRepository repository) {
         this.finder = GardenFinder.create(repository);
         this.deleter = GardenDeleter.create(repository);
     }
 
-    public static GardenDeleterByCity create(GardenRepository repository) {
-        return new GardenDeleterByCity(repository);
+    public static GardenDeleterByCityName create(GardenRepository repository) {
+        return new GardenDeleterByCityName(repository);
     }
 
     @Override
@@ -32,7 +32,6 @@ public class GardenDeleterByCity implements Controller {
     }
 
     private String askCityName() {
-        String rawCityName = Asker.text("Introduzca el nombre de la ciudad (o parte):\t");
-        return rawCityName;
+        return Asker.text("Introduzca el nombre de la ciudad (o parte):\t");
     }
 }

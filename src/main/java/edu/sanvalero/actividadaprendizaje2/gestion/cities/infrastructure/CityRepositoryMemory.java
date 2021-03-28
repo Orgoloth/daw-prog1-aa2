@@ -1,15 +1,10 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure;
 
+import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.*;
+
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.City;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityId;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityNotFound;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 
 public class CityRepositoryMemory implements CityRepository {
     private Map<CityId, City> cities = new HashMap<>();
@@ -20,21 +15,19 @@ public class CityRepositoryMemory implements CityRepository {
     }
 
     @Override
-    public City search(CityId id) {
+    public City find(CityId id) {
         checkCityExists(id);
         return cities.get(id);
     }
 
     @Override
-    public City find(CityName name) throws Exception {
-        Iterator<City> it = cities.values().iterator();
-        while (it.hasNext()) {
-            City iterationCity = it.next();
-            if (iterationCity.name().equals(name)) {
-                return iterationCity;
+    public City searchFirstByName(CityName name) throws CityNotFound {
+        for (City city : cities.values()) {
+            if (city.name().equals(name)) {
+                return city;
             }
         }
-        throw new Exception("La busqueda de ciudad por el nombre: " + name.value() + " no encontró ninguna ciudad");
+        throw CityNotFound.withSearchByCityName(name);
     }
 
     @Override

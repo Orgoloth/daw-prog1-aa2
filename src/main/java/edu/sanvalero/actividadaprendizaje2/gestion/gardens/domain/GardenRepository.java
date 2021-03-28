@@ -1,27 +1,29 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain;
 
-import java.util.Collection;
-
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
 
+import java.util.Collection;
+
 public interface GardenRepository {
 
-    public void save(Garden garden);
+    void save(Garden garden);
 
-    public void delete(GardenId id) throws GardenNotFound;
+    void delete(GardenId id) throws GardenNotFound;
 
-    public Garden find(GardenId id) throws GardenNotFound;
+    Garden find(GardenId id) throws GardenNotFound;
 
-    public Collection<Garden> searchByCityName(CityName searchedCityName);
+    Collection<Garden> searchByCityName(CityName searchedCityName) throws Exception;
 
-    public Collection<Garden> searchByCityRegion(CityRegion searchedCityRegion);
+    Collection<Garden> searchByCityRegion(CityRegion searchedCityRegion);
 
-    public Collection<Garden> searchByGardenName(GardenName searchedGardenName);
+    Collection<Garden> searchByGardenName(GardenName searchedGardenName);
 
-    public Collection<Garden> searchByCityNameAndMinimumGardenExtension(CityName cityName,
-            GardenExtension minimumGardenExtension);
+    Collection<Garden> searchByCityNameAndMinimumGardenExtension(CityName cityName,
+                                                                 GardenExtension minimumGardenExtension);
 
-    public Collection<Garden> all();
+    Collection<Garden> searchByMinimumExtension(GardenExtension minimumGardenExtension);
+
+    Collection<Garden> all();
 
 }

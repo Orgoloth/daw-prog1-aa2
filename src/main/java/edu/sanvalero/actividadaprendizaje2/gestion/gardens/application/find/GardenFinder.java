@@ -23,29 +23,25 @@ public class GardenFinder {
         return new GardenFinder(repository);
     }
 
-    public List<UUID> searchByCityName(String rawCityName) {
+    public List<UUID> searchByCityName(String rawCityName) throws Exception {
         Collection<Garden> founds = repository.searchByCityName(CityName.create(rawCityName));
-        List<UUID> results = extractUuids(founds);
-        return results;
+        return extractUuids(founds);
     }
 
     public List<UUID> searchByGardenName(String rawGardenName) {
         Collection<Garden> founds = repository.searchByGardenName(GardenName.create(rawGardenName));
-        List<UUID> results = extractUuids(founds);
-        return results;
+        return extractUuids(founds);
     }
 
     public List<UUID> searchByCityRegion(String rawCityRegion) {
         Collection<Garden> founds = repository.searchByCityRegion(CityRegion.create(rawCityRegion));
-        List<UUID> results = extractUuids(founds);
-        return results;
+        return extractUuids(founds);
     }
 
     public List<UUID> searchByCityNameAndMinimumExtension(String rawCityName, int rawMinimumGardenExtension) {
         Collection<Garden> founds = repository.searchByCityNameAndMinimumGardenExtension(CityName.create(rawCityName),
                 GardenExtension.create(rawMinimumGardenExtension));
-        List<UUID> results = extractUuids(founds);
-        return results;
+        return extractUuids(founds);
     }
 
     private List<UUID> extractUuids(Collection<Garden> founds) {

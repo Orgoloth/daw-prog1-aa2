@@ -28,18 +28,15 @@ public class GardenCreatorController implements Controller {
     }
 
     private String askName() {
-        String rawName = Asker.text("Introduzca el nombre del parque:\t");
-        return rawName;
+        return Asker.text("Introduzca el nombre del parque:\t");
     }
 
     private int askExtension() {
-        int rawExtension = Asker.number("Introduzca la extensión en km^2 del parque:\t");
-        return rawExtension;
+        return Asker.number("Introduzca la extensión en km^2 del parque:\t");
     }
 
     private String askCityName() {
-        String rawCity = Asker.text("Introduzca el nombre de la ciudad:\t");
-        return rawCity;
+        return Asker.text("Introduzca el nombre de la ciudad:\t");
     }
 
 }

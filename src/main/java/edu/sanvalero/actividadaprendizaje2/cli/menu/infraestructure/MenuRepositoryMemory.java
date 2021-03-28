@@ -7,7 +7,7 @@ import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.Menu;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuRepository;
 
 public class MenuRepositoryMemory implements MenuRepository {
-    private List<Menu> menuCollection = new ArrayList<>();
+    private final List<Menu> menuCollection = new ArrayList<>();
 
     @Override
     public void save(Menu menu) {

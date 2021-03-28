@@ -4,7 +4,7 @@ import edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject.IntValueObj
 
 public class GardenExtension extends IntValueObject {
 
-    public GardenExtension(int value) {
+    private GardenExtension(int value) {
         super(value);
     }
 

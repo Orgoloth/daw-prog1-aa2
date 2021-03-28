@@ -8,7 +8,7 @@ public class CityPrinterAllController implements Controller {
     private final CityPrinter printer;
 
     private CityPrinterAllController(CityRepository repository) {
-        this.printer = new CityPrinter(repository);
+        this.printer = CityPrinter.create(repository);
     }
 
     public static CityPrinterAllController create(CityRepository repository) {

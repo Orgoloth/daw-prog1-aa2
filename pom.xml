@@ -12,9 +12,23 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>ojdbc7</artifactId>
+      <version>12c</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.23</version>
+    </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -45,14 +59,14 @@
           </configuration>
         </plugin>
 
-        <plugin>
+        <!-- <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.1</version>
           <configuration>
-            <release>14</release>
+            <release>8</release>
           </configuration>
-        </plugin>
+        </plugin> -->
 
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>

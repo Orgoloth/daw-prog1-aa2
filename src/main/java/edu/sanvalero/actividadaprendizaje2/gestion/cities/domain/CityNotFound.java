@@ -7,8 +7,15 @@ public class CityNotFound extends IllegalArgumentException {
         return new CityNotFound(idNotFound);
     }
 
-    private CityNotFound(CityId idNotFound) {
-        super("La ciudad con el id" + idNotFound.value() + " no fue encontrada");
+    public static CityNotFound withSearchByCityName(CityName cityName) {
+        return new CityNotFound(cityName);
     }
 
+    private CityNotFound(CityId idNotFound) {
+        super("La ciudad con el id " + idNotFound.value() + " no fue encontrada");
+    }
+
+    private CityNotFound(CityName nameNotFound) {
+        super("La ciudad con el nombre " + nameNotFound.value() + " no fue encontrada");
+    }
 }

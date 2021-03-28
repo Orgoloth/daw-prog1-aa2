@@ -3,11 +3,11 @@ package edu.sanvalero.actividadaprendizaje2.gestion.cities.domain;
 import java.util.Collection;
 
 public interface CityRepository {
-    public void save(City city);
+    void save(City city);
+    
+    City find(CityId id);
 
-    public City find(CityName name) throws Exception;
+    City searchFirstByName(CityName cityName) throws Exception;
 
-    public City search(CityId id);
-
-    public Collection<City> all();
+    Collection<City> all();
 }

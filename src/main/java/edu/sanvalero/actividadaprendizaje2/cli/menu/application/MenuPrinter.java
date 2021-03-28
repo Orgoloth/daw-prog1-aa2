@@ -15,7 +15,7 @@ public class MenuPrinter {
     public void printAll() {
         List<Menu> menus = repository.all();
         for (int i = 0; i < menus.size(); i++) {
-            System.out.println(i + 1 + ".-\t" + menus.get(i).description());
+            System.out.println(i + 1 + " .- \t" + menus.get(i).description());
         }
     }
 }

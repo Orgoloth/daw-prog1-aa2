@@ -15,7 +15,7 @@ import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenNotFound
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
 public class GardenRepositoryMemory implements GardenRepository {
-    private Map<GardenId, Garden> gardens = new HashMap<>();
+    private final Map<GardenId, Garden> gardens = new HashMap<>();
 
     @Override
     public void save(Garden garden) {
@@ -78,6 +78,18 @@ public class GardenRepositoryMemory implements GardenRepository {
         for (Garden garden : gardens.values()) {
             if (garden.city().name().contains(searchedCityName)
                     && garden.extension().isEqualOrBiggerThan(minimumGardenExtension)) {
+                results.add(garden);
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public Collection<Garden> searchByMinimumExtension(GardenExtension minimumGardenExtension) {
+        Collection<Garden> results = new ArrayList<>();
+
+        for (Garden garden : gardens.values()) {
+            if (garden.extension().isEqualOrBiggerThan(minimumGardenExtension)) {
                 results.add(garden);
             }
         }

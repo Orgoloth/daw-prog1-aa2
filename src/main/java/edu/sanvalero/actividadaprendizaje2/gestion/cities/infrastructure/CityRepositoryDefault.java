@@ -1,32 +1,21 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.*;
 
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.City;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityId;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityNotFound;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
+import java.util.*;
 
 public class CityRepositoryDefault implements CityRepository {
-    private Map<CityId, City> cities = new HashMap<>();
+    private final Map<CityId, City> cities = new HashMap<>();
 
     public CityRepositoryDefault() {
         List<String[]> defaultCities = new ArrayList<>();
-        defaultCities.add(new String[] { "Zaragoza", "Aragón" });
-        defaultCities.add(new String[] { "Huesca", "Aragón" });
-        defaultCities.add(new String[] { "Teruel", "Aragón" });
-        defaultCities.add(new String[] { "Madrid", "Madrid" });
-        defaultCities.add(new String[] { "Sevilla", "Andalucia" });
-        defaultCities.add(new String[] { "Malaga", "Andalucia" });
-        defaultCities.add(new String[] { "Córdoba", "Andalucia" });
+        defaultCities.add(new String[]{"Zaragoza", "Aragón"});
+        defaultCities.add(new String[]{"Huesca", "Aragón"});
+        defaultCities.add(new String[]{"Teruel", "Aragón"});
+        defaultCities.add(new String[]{"Madrid", "Madrid"});
+        defaultCities.add(new String[]{"Sevilla", "Andalucia"});
+        defaultCities.add(new String[]{"Malaga", "Andalucia"});
+        defaultCities.add(new String[]{"Córdoba", "Andalucia"});
 
         defaultCities.forEach((data) -> save(
                 City.create(CityId.create(UUID.randomUUID()), CityName.create(data[0]), CityRegion.create(data[1]))));
@@ -39,21 +28,19 @@ public class CityRepositoryDefault implements CityRepository {
     }
 
     @Override
-    public City search(CityId id) {
+    public City find(CityId id) {
         checkCityExists(id);
         return cities.get(id);
     }
 
     @Override
-    public City find(CityName name) throws Exception {
-        Iterator<City> it = cities.values().iterator();
-        while (it.hasNext()) {
-            City iterationCity = it.next();
-            if (iterationCity.name().equals(name)) {
-                return iterationCity;
+    public City searchFirstByName(CityName cityName) {
+        for (City city : cities.values()) {
+            if (city.name().equals(cityName)) {
+                return city;
             }
         }
-        throw new Exception("La busqueda de ciudad por el nombre: " + name.value() + " no encontró ninguna ciudad");
+        throw CityNotFound.withSearchByCityName(cityName);
     }
 
     @Override

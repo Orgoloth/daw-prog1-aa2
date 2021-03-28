@@ -1,11 +1,10 @@
-package edu.sanvalero.actividadaprendizaje2.gestion.cities.infraestructure;
+package edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure;
 
 import org.junit.jupiter.api.Test;
 
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.City;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityMother;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
-import edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure.CityRepositoryMemory;
 
 public class CityRepositoryMemoryShould {
     @Test
