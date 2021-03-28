@@ -26,7 +26,7 @@ public class GardenCreator {
 
     public void createNewGarden(UUID id, String rawName, int rawExtension, String cityName) throws Exception {
         try {
-            City city = cityRepository.find(CityName.create(cityName));
+            City city = cityRepository.searchByName(CityName.create(cityName));
             Garden newGarden = Garden.create(GardenId.create(id), GardenName.create(rawName),
                     new GardenExtension(rawExtension), city);
             gardenRepository.save(newGarden);

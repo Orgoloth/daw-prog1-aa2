@@ -20,13 +20,13 @@ public class CityRepositoryMemory implements CityRepository {
     }
 
     @Override
-    public City search(CityId id) {
+    public City find(CityId id) {
         checkCityExists(id);
         return cities.get(id);
     }
 
     @Override
-    public City find(CityName name) throws Exception {
+    public City searchByName(CityName name) throws Exception {
         Iterator<City> it = cities.values().iterator();
         while (it.hasNext()) {
             City iterationCity = it.next();

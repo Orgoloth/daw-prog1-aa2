@@ -85,6 +85,18 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
+    public Collection<Garden> searchByMinimumExtension(GardenExtension minimumGardenExtension) {
+        Collection<Garden> results = new ArrayList<>();
+
+        for (Garden garden : gardens.values()) {
+            if (garden.extension().isEqualOrBiggerThan(minimumGardenExtension)) {
+                results.add(garden);
+            }
+        }
+        return results;
+    }
+
+    @Override
     public Collection<Garden> all() {
         return gardens.values();
     }

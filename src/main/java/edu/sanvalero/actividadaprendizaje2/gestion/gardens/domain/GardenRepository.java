@@ -22,6 +22,8 @@ public interface GardenRepository {
     public Collection<Garden> searchByCityNameAndMinimumGardenExtension(CityName cityName,
             GardenExtension minimumGardenExtension);
 
+    public Collection<Garden> searchByMinimumExtension(GardenExtension minimumGardenExtension);
+
     public Collection<Garden> all();
 
 }

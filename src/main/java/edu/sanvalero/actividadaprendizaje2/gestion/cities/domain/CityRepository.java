@@ -4,10 +4,10 @@ import java.util.Collection;
 
 public interface CityRepository {
     public void save(City city);
-
-    public City find(CityName name) throws Exception;
-
-    public City search(CityId id);
+    
+    public City find(CityId id);
+    
+    public City searchByName(CityName name) throws Exception;
 
     public Collection<City> all();
 }

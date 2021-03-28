@@ -1,5 +1,7 @@
 package edu.sanvalero.actividadaprendizaje2.cli;
 
+import java.sql.Connection;
+
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterAllController;
 import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.CityPrinterByMinimumSumOfExtension;
@@ -13,6 +15,7 @@ import edu.sanvalero.actividadaprendizaje2.cli.menu.application.MenuCreator;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.application.MenuPrinter;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuRepository;
 import edu.sanvalero.actividadaprendizaje2.cli.menu.infraestructure.MenuRepositoryMemory;
+import edu.sanvalero.actividadaprendizaje2.db.DataBaseConnection;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure.CityRepositoryDefault;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
@@ -24,7 +27,10 @@ public class App {
     private GardenRepository gardenRepository;
 
     public static void main(String[] args) {
-        new App();
+        DataBaseConnection database = new DataBaseConnection(DataBaseConnection.PROVIDER.ORACLE);
+        Connection connection = database.connection();
+        // new App();
+        database.disconnect();
     }
 
     private App() {
@@ -74,11 +80,12 @@ public class App {
                 "Devolver el número de parques de una determinada ciudad que tengan una extensión individual mayor que la que desee el usuario.",
                 GardenPrinterByCityNameAndMinimumExtensionController.create(gardenRepository));
 
-        menuCreator.create("Borrar todos los parques de una determinada ciudad por nombre.", GardenDeleterByCity.create(gardenRepository));
+        menuCreator.create("Borrar todos los parques de una determinada ciudad por nombre.",
+                GardenDeleterByCity.create(gardenRepository));
 
         menuCreator.create(
                 "(PENDIENTE) Listar el nombre de todas las ciudades que contengan parques cuya suma total de su extensión, sea mayor que la que quiera el usuario.",
-                CityPrinterByMinimumSumOfExtension.create(gardenRepository));
+                CityPrinterByMinimumSumOfExtension.create(gardenRepository, cityRepository));
 
         menuCreator.create("Listar todas las ciudades.", CityPrinterAllController.create(cityRepository));
         menuCreator.create("Salir.", null);
