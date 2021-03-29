@@ -3,7 +3,7 @@ package edu.sanvalero.actividadaprendizaje2.cli;
 import java.util.Scanner;
 
 public class Asker {
-    public static Scanner scanner = new Scanner(System.in);
+    public static final Scanner scanner = new Scanner(System.in);
 
     public static String text(String question) {
         System.out.print(question);

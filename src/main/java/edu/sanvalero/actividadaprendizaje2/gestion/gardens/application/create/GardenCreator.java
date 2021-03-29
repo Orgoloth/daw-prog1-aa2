@@ -14,14 +14,14 @@ public class GardenCreator {
 
     private GardenCreator(GardenRepository gardenRepository, CityRepository cityRepository) {
         this.gardenRepository = gardenRepository;
-        this.cityFinder = CityFinder.create(cityRepository);
+        this.cityFinder = CityFinder.create(cityRepository, gardenRepository);
     }
 
     public static GardenCreator create(GardenRepository gardenRepository, CityRepository cityRepository) {
         return new GardenCreator(gardenRepository, cityRepository);
     }
 
-    public void createNewGarden(UUID id, String rawName, int rawExtension, String cityName) throws Exception {
+    public void createNewGarden(UUID id, String rawName, int rawExtension, String cityName) {
         City city = cityFinder.searchFirstByName(CityName.create(cityName));
         Garden newGarden = Garden.create(
                 GardenId.create(id),

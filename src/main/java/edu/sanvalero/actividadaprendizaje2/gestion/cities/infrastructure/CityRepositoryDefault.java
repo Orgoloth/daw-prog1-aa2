@@ -34,18 +34,18 @@ public class CityRepositoryDefault implements CityRepository {
     }
 
     @Override
-    public City searchFirstByName(CityName cityName) {
+    public Set<City> searchBy(CityName cityName) {
+        HashSet<City> citiesFound = new HashSet<>();
         for (City city : cities.values()) {
-            if (city.name().equals(cityName)) {
-                return city;
-            }
+            if (city.name().contains(cityName))
+                citiesFound.add(city);
         }
-        throw CityNotFound.withSearchByCityName(cityName);
+        return citiesFound;
     }
 
     @Override
-    public Collection<City> all() {
-        return cities.values();
+    public Set<City> all() {
+        return new HashSet<>(cities.values());
     }
 
     private void checkCityExists(CityId id) {

@@ -10,11 +10,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class GardenPrinterByRegionController implements Controller {
-    private final GardenFinder finder;
     private final GardenPrinter printer;
 
     private GardenPrinterByRegionController(GardenRepository repository) {
-        this.finder = GardenFinder.create(repository);
         this.printer = GardenPrinter.create(repository);
     }
 
@@ -23,12 +21,9 @@ public class GardenPrinterByRegionController implements Controller {
     }
 
     @Override
-    public void invoke() throws Exception {
+    public void invoke() {
         String rawCityRegion = askCityRegion();
-        List<UUID> results = finder.searchByCityRegion(rawCityRegion);
-        for (UUID rawUuid : results) {
-            printer.print(rawUuid);
-        }
+        printer.printByCityRegion(rawCityRegion);
     }
 
     private String askCityRegion() {

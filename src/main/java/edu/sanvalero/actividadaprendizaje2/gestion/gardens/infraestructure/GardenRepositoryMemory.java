@@ -1,18 +1,13 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.infraestructure;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenExtension;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenId;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenNotFound;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.*;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class GardenRepositoryMemory implements GardenRepository {
     private final Map<GardenId, Garden> gardens = new HashMap<>();
@@ -35,8 +30,8 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Collection<Garden> searchByCityName(CityName searchedCityName) {
-        Collection<Garden> results = new ArrayList<>();
+    public Set<Garden> searchBy(CityName searchedCityName) {
+        Set<Garden> results = new HashSet<>();
 
         for (Garden garden : gardens.values()) {
             if (garden.city().name().contains(searchedCityName)) {
@@ -47,8 +42,8 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Collection<Garden> searchByCityRegion(CityRegion searchedCityRegion) {
-        Collection<Garden> results = new ArrayList<>();
+    public Set<Garden> searchBy(CityRegion searchedCityRegion) {
+        Set<Garden> results = new HashSet<>();
 
         for (Garden garden : gardens.values()) {
             if (garden.city().region().contains(searchedCityRegion)) {
@@ -59,8 +54,8 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Collection<Garden> searchByGardenName(GardenName searchedGardenName) {
-        Collection<Garden> results = new ArrayList<>();
+    public Set<Garden> searchBy(GardenName searchedGardenName) {
+        Set<Garden> results = new HashSet<>();
 
         for (Garden garden : gardens.values()) {
             if (garden.name().contains(searchedGardenName)) {
@@ -71,9 +66,9 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Collection<Garden> searchByCityNameAndMinimumGardenExtension(CityName searchedCityName,
-            GardenExtension minimumGardenExtension) {
-        Collection<Garden> results = new ArrayList<>();
+    public Set<Garden> searchBy(CityName searchedCityName,
+                                GardenExtension minimumGardenExtension) {
+        Set<Garden> results = new HashSet<>();
 
         for (Garden garden : gardens.values()) {
             if (garden.city().name().contains(searchedCityName)
@@ -85,20 +80,8 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
-    public Collection<Garden> searchByMinimumExtension(GardenExtension minimumGardenExtension) {
-        Collection<Garden> results = new ArrayList<>();
-
-        for (Garden garden : gardens.values()) {
-            if (garden.extension().isEqualOrBiggerThan(minimumGardenExtension)) {
-                results.add(garden);
-            }
-        }
-        return results;
-    }
-
-    @Override
-    public Collection<Garden> all() {
-        return gardens.values();
+    public Set<Garden> all() {
+        return new HashSet<>(gardens.values());
     }
 
     private void checkGardenExists(GardenId id) {

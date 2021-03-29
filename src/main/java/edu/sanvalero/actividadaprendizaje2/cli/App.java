@@ -84,15 +84,15 @@ public final class App {
 
         menuCreator.create(
                 "Borrar todos los parques de una determinada ciudad por nombre.",
-                GardenDeleterByCityName.create(gardenRepository));
+                GardenDeleterByCityNameController.create(gardenRepository));
 
         menuCreator.create(
                 "Listar el nombre de todas las ciudades que contengan parques cuya suma total de su extensión, sea mayor que la que quiera el usuario.",
-                CityPrinterByMinimumSumOfExtension.create(gardenRepository, cityRepository));
+                CityPrinterByMinimumSumOfExtensionController.create(gardenRepository, cityRepository));
 
         menuCreator.create(
                 "(AUX) Listar todas las ciudades.",
-                CityPrinterAllController.create(cityRepository));
+                CityPrinterAllController.create(cityRepository, gardenRepository));
 
         menuCreator.create(
                 "Salir.",
@@ -101,7 +101,7 @@ public final class App {
 
     private void showMenu() {
         MenuPrinter menuPrinter = new MenuPrinter(menuRepository);
-        System.out.println("\n COMANDOS DISPONIBLES:");
+        System.out.println("\n\n COMANDOS DISPONIBLES:");
         menuPrinter.printAll();
     }
 }

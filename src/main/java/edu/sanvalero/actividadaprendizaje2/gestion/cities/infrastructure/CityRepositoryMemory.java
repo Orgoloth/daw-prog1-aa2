@@ -2,12 +2,10 @@ package edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure;
 
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CityRepositoryMemory implements CityRepository {
-    private Map<CityId, City> cities = new HashMap<>();
+    private final Map<CityId, City> cities = new HashMap<>();
 
     @Override
     public void save(City city) {
@@ -21,18 +19,13 @@ public class CityRepositoryMemory implements CityRepository {
     }
 
     @Override
-    public City searchFirstByName(CityName name) throws CityNotFound {
-        for (City city : cities.values()) {
-            if (city.name().equals(name)) {
-                return city;
-            }
-        }
-        throw CityNotFound.withSearchByCityName(name);
+    public Set<City> searchBy(CityName name) {
+        return new HashSet<>(cities.values());
     }
 
     @Override
-    public Collection<City> all() {
-        return cities.values();
+    public Set<City> all() {
+        return new HashSet<>(cities.values());
     }
 
     private void checkCityExists(CityId id) {

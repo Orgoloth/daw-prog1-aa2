@@ -1,24 +1,26 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.delete;
 
-import java.util.UUID;
-
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenId;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenNotFound;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.GardenFinder;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
+import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
 public class GardenDeleter {
     private final GardenRepository repository;
+    private final GardenFinder finder;
 
     private GardenDeleter(GardenRepository repository) {
         this.repository = repository;
+        this.finder = GardenFinder.create(repository);
     }
 
     public static GardenDeleter create(GardenRepository repository) {
         return new GardenDeleter(repository);
     }
 
-    public void delete(UUID gardenUuidToDelete) throws GardenNotFound {
-        repository.delete(GardenId.create(gardenUuidToDelete));
+    public void deleteBy(String rawCityName) {
+        for (Garden garden : finder.searchBy(GardenName.create(rawCityName))) {
+            repository.delete(garden.id());
+        }
     }
-
 }

@@ -3,7 +3,7 @@ package edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.City;
 
 public class Garden {
-    private GardenId id;
+    private final GardenId id;
     private GardenName name;
     private GardenExtension extension;
     private City city;

@@ -1,16 +1,13 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
-
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRegion;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenExtension;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
+
+import java.util.Set;
 
 public class GardenFinder {
     private final GardenRepository repository;
@@ -23,32 +20,23 @@ public class GardenFinder {
         return new GardenFinder(repository);
     }
 
-    public List<UUID> searchByCityName(String rawCityName) throws Exception {
-        Collection<Garden> founds = repository.searchByCityName(CityName.create(rawCityName));
-        return extractUuids(founds);
+    public Set<Garden> searchBy(CityName filterCityName) {
+        return repository.searchBy(filterCityName);
     }
 
-    public List<UUID> searchByGardenName(String rawGardenName) {
-        Collection<Garden> founds = repository.searchByGardenName(GardenName.create(rawGardenName));
-        return extractUuids(founds);
+    public Set<Garden> searchBy(GardenName filterGardenName) {
+        return repository.searchBy(filterGardenName);
     }
 
-    public List<UUID> searchByCityRegion(String rawCityRegion) {
-        Collection<Garden> founds = repository.searchByCityRegion(CityRegion.create(rawCityRegion));
-        return extractUuids(founds);
+    public Set<Garden> searchBy(CityRegion filterCityRegion) {
+        return repository.searchBy(filterCityRegion);
     }
 
-    public List<UUID> searchByCityNameAndMinimumExtension(String rawCityName, int rawMinimumGardenExtension) {
-        Collection<Garden> founds = repository.searchByCityNameAndMinimumGardenExtension(CityName.create(rawCityName),
-                GardenExtension.create(rawMinimumGardenExtension));
-        return extractUuids(founds);
+    public Set<Garden> searchBy(CityName filterCityName, GardenExtension filterMinimumGardenExtension) {
+        return repository.searchBy(filterCityName, filterMinimumGardenExtension);
     }
 
-    private List<UUID> extractUuids(Collection<Garden> founds) {
-        List<UUID> results = new ArrayList<>();
-        for (Garden garden : founds) {
-            results.add(garden.id().value());
-        }
-        return results;
+    public Set<Garden> all() {
+        return repository.all();
     }
 }

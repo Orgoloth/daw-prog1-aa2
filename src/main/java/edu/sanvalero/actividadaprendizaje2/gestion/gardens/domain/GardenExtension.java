@@ -12,4 +12,8 @@ public class GardenExtension extends IntValueObject {
         return new GardenExtension(rawGardenExtension);
     }
 
+    public GardenExtension add(GardenExtension extension) {
+        return GardenExtension.create(value() + extension.value());
+    }
+
 }

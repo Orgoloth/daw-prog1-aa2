@@ -3,7 +3,7 @@ package edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject;
 import java.util.UUID;
 
 public abstract class UuidValueObject {
-    private UUID uuid;
+    private final UUID uuid;
 
     public UuidValueObject(UUID value) {
         this.uuid = value;

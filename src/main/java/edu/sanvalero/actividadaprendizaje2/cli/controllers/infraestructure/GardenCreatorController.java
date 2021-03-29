@@ -19,7 +19,7 @@ public class GardenCreatorController implements Controller {
     }
 
     @Override
-    public void invoke() throws Exception {
+    public void invoke() {
         String rawName = askName();
         int rawExtension = askExtension();
         String rawCity = askCityName();

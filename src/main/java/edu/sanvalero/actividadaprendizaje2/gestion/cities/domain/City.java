@@ -1,5 +1,7 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.cities.domain;
 
+import java.util.Objects;
+
 public final class City {
     private final CityId id;
     private final CityName name;
@@ -20,10 +22,23 @@ public final class City {
     }
 
     public CityName name() {
-           return name;
+        return name;
     }
 
     public CityRegion region() {
         return region;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return id.equals(city.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -2,7 +2,7 @@ package edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject;
 
 public abstract class StringValueObject {
 
-    protected String value;
+    protected final String value;
 
     public StringValueObject(String value) {
         this.value = value;
