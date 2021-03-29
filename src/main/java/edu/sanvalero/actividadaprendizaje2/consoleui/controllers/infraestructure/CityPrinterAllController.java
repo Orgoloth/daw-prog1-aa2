@@ -1,6 +1,6 @@
-package edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure;
+package edu.sanvalero.actividadaprendizaje2.consoleui.controllers.infraestructure;
 
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
+import edu.sanvalero.actividadaprendizaje2.consoleui.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.application.print.CityPrinter;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;

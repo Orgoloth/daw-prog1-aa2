@@ -1,13 +1,13 @@
-package edu.sanvalero.actividadaprendizaje2.cli;
+package edu.sanvalero.actividadaprendizaje2.consoleui;
 
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure.*;
-import edu.sanvalero.actividadaprendizaje2.cli.menu.application.MenuCreator;
-import edu.sanvalero.actividadaprendizaje2.cli.menu.application.MenuPrinter;
-import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuRepository;
-import edu.sanvalero.actividadaprendizaje2.cli.menu.infraestructure.MenuRepositoryMemory;
-import edu.sanvalero.actividadaprendizaje2.db.DataBaseConnection;
-import edu.sanvalero.actividadaprendizaje2.db.OracleDataBase;
+import edu.sanvalero.actividadaprendizaje2.consoleui.controllers.domain.Controller;
+import edu.sanvalero.actividadaprendizaje2.consoleui.controllers.infraestructure.*;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.application.MenuCreator;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.application.MenuPrinter;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain.MenuRepository;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.infraestructure.MenuRepositoryMemory;
+import edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db.DataBaseConnection;
+import edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db.OracleDataBase;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure.CityRepositoryOracle;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;

@@ -1,4 +1,4 @@
-package edu.sanvalero.actividadaprendizaje2.cli.menu.domain;
+package edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain;
 
 import java.util.List;
 

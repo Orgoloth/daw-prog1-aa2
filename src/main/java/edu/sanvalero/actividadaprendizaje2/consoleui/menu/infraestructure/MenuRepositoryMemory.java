@@ -1,10 +1,10 @@
-package edu.sanvalero.actividadaprendizaje2.cli.menu.infraestructure;
+package edu.sanvalero.actividadaprendizaje2.consoleui.menu.infraestructure;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.Menu;
-import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuRepository;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain.Menu;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain.MenuRepository;
 
 public class MenuRepositoryMemory implements MenuRepository {
     private final List<Menu> menuCollection = new ArrayList<>();

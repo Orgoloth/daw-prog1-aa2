@@ -18,7 +18,7 @@ public class GardenDeleter {
         return new GardenDeleter(repository);
     }
 
-    public void deleteBy(String rawCityName) {
+    public void deleteByCityName(String rawCityName) {
         for (Garden garden : finder.searchBy(GardenName.create(rawCityName))) {
             repository.delete(garden.id());
         }

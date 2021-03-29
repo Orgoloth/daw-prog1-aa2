@@ -49,13 +49,13 @@ public class CityRepositoryOracle implements CityRepository {
 
     @Override
     public Set<City> searchBy(CityName cityName) {
-        Set<City> citiesFound = new HashSet<>();
+        Set<City> found = new HashSet<>();
         String query = "SELECT ID, NAME, REGION FROM CITIES WHERE UPPER(NAME) LIKE UPPER(?)";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             sentence.setString(1, "%" + cityName.value() + "%");
             try (ResultSet results = sentence.executeQuery()) {
                 while (results.next()) {
-                    citiesFound.add(City.create(
+                    found.add(City.create(
                             CityId.create(UUID.fromString(results.getString("ID"))),
                             CityName.create(results.getString("NAME")),
                             CityRegion.create(results.getString("REGION"))));
@@ -64,7 +64,7 @@ public class CityRepositoryOracle implements CityRepository {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return citiesFound;
+        return found;
     }
 
     @Override

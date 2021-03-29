@@ -1,9 +1,9 @@
-package edu.sanvalero.actividadaprendizaje2.cli.menu.application;
+package edu.sanvalero.actividadaprendizaje2.consoleui.menu.application;
 
 import java.util.List;
 
-import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.Menu;
-import edu.sanvalero.actividadaprendizaje2.cli.menu.domain.MenuRepository;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain.Menu;
+import edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain.MenuRepository;
 
 public class MenuPrinter {
     private final MenuRepository repository;

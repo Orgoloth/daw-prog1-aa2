@@ -72,14 +72,14 @@ public class GardenRepositoryOracle implements GardenRepository {
 
     @Override
     public Set<Garden> searchBy(CityName searchedCityName) {
-        Set<Garden> founds = new HashSet<>();
+        Set<Garden> found = new HashSet<>();
         String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             try (ResultSet results = sentence.executeQuery()) {
                 while (results.next()) {
                     City candidateCity = cityRepository.find(CityId.create(UUID.fromString(results.getString("CITY_ID"))));
                     if (candidateCity.name().contains(searchedCityName)) {
-                        founds.add(Garden.create(
+                        found.add(Garden.create(
                                 GardenId.create(UUID.fromString(results.getString("ID"))),
                                 GardenName.create(results.getString("NAME")),
                                 GardenExtension.create(results.getInt("EXTENSION")),
@@ -91,19 +91,19 @@ public class GardenRepositoryOracle implements GardenRepository {
         } catch (SQLException ex) {
             System.out.println("SQL: " + ex.getMessage());
         }
-        return founds;
+        return found;
     }
 
     @Override
     public Set<Garden> searchBy(CityRegion searchedCityRegion) {
-        Set<Garden> founds = new HashSet<>();
+        Set<Garden> found = new HashSet<>();
         String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             try (ResultSet results = sentence.executeQuery()) {
                 while (results.next()) {
                     City candidateCity = cityRepository.find(CityId.create(UUID.fromString(results.getString("CITY_ID"))));
                     if (candidateCity.region().contains(searchedCityRegion)) {
-                        founds.add(Garden.create(
+                        found.add(Garden.create(
                                 GardenId.create(UUID.fromString(results.getString("ID"))),
                                 GardenName.create(results.getString("NAME")),
                                 GardenExtension.create(results.getInt("EXTENSION")),
@@ -115,18 +115,18 @@ public class GardenRepositoryOracle implements GardenRepository {
         } catch (SQLException ex) {
             System.out.println("SQL: " + ex.getMessage());
         }
-        return founds;
+        return found;
     }
 
     @Override
     public Set<Garden> searchBy(GardenName searchedGardenName) {
-        Set<Garden> founds = new HashSet<>();
+        Set<Garden> found = new HashSet<>();
         String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS WHERE UPPER(NAME) LIKE UPPER(?)";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             sentence.setString(1, "%" + searchedGardenName.toString() + "%");
             try (ResultSet results = sentence.executeQuery()) {
                 while (results.next()) {
-                    founds.add(Garden.create(
+                    found.add(Garden.create(
                             GardenId.create(UUID.fromString(results.getString("ID"))),
                             GardenName.create(results.getString("NAME")),
                             GardenExtension.create(results.getInt("EXTENSION")),
@@ -137,13 +137,13 @@ public class GardenRepositoryOracle implements GardenRepository {
         } catch (SQLException ex) {
             System.out.println("SQL: " + ex.getMessage());
         }
-        return founds;
+        return found;
     }
 
     @Override
     public Set<Garden> searchBy(CityName searchedCityName,
                                        GardenExtension minimumGardenExtension) {
-        Set<Garden> founds = new HashSet<>();
+        Set<Garden> found = new HashSet<>();
         String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS WHERE EXTENSION >= ?";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             sentence.setInt(1, minimumGardenExtension.value());
@@ -151,7 +151,7 @@ public class GardenRepositoryOracle implements GardenRepository {
                 while (results.next()) {
                     City candidateCity = cityRepository.find(CityId.create(UUID.fromString(results.getString("CITY_ID"))));
                     if (candidateCity.name().contains(searchedCityName)) {
-                        founds.add(Garden.create(
+                        found.add(Garden.create(
                                 GardenId.create(UUID.fromString(results.getString("ID"))),
                                 GardenName.create(results.getString("NAME")),
                                 GardenExtension.create(results.getInt("EXTENSION")), candidateCity
@@ -162,18 +162,18 @@ public class GardenRepositoryOracle implements GardenRepository {
         } catch (SQLException ex) {
             System.out.println("SQL: " + ex.getMessage());
         }
-        return founds;
+        return found;
     }
 
 
     @Override
     public Set<Garden> all() {
-        Set<Garden> founds = new HashSet<>();
+        Set<Garden> found = new HashSet<>();
         String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             try (ResultSet results = sentence.executeQuery()) {
                 while (results.next()) {
-                    founds.add(Garden.create(
+                    found.add(Garden.create(
                             GardenId.create(UUID.fromString(results.getString("ID"))),
                             GardenName.create(results.getString("NAME")),
                             GardenExtension.create(results.getInt("EXTENSION")),
@@ -184,6 +184,6 @@ public class GardenRepositoryOracle implements GardenRepository {
         } catch (SQLException ex) {
             System.out.println("SQL: " + ex.getMessage());
         }
-        return founds;
+        return found;
     }
 }

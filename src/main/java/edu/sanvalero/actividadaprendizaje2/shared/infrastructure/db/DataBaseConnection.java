@@ -1,4 +1,4 @@
-package edu.sanvalero.actividadaprendizaje2.db;
+package edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

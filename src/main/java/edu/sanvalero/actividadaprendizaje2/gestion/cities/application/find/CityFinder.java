@@ -34,6 +34,21 @@ public class CityFinder {
         Set<City> results = new HashSet<>();
         Map<City, GardenExtension> sumExtensionByCity = new HashMap<>();
 
+        sumExtensionsByCity(sumExtensionByCity);
+        addCitiesThatSatisfy(filterMinimumSumGardenExtensionOnCity, results, sumExtensionByCity);
+
+        return results;
+    }
+
+    private void addCitiesThatSatisfy(GardenExtension filterMinimumSumGardenExtensionOnCity, Set<City> results, Map<City, GardenExtension> sumExtensionByCity) {
+        for (City city : sumExtensionByCity.keySet()) {
+            if (sumExtensionByCity.get(city).isEqualOrBiggerThan(filterMinimumSumGardenExtensionOnCity)) {
+                results.add(city);
+            }
+        }
+    }
+
+    private void sumExtensionsByCity(Map<City, GardenExtension> sumExtensionByCity) {
         for (Garden garden : gardenFinder.all()) {
             if (sumExtensionByCity.containsKey(garden.city())) {
                 GardenExtension previousExtension = sumExtensionByCity.get(garden.city());
@@ -42,14 +57,6 @@ public class CityFinder {
                 sumExtensionByCity.put(garden.city(), garden.extension());
             }
         }
-
-        for (City city : sumExtensionByCity.keySet()) {
-            if (sumExtensionByCity.get(city).isEqualOrBiggerThan(filterMinimumSumGardenExtensionOnCity)) {
-                results.add(city);
-            }
-        }
-
-        return results;
     }
 
     public Set<City> all() {

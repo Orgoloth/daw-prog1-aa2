@@ -1,7 +1,7 @@
-package edu.sanvalero.actividadaprendizaje2.cli.controllers.infraestructure;
+package edu.sanvalero.actividadaprendizaje2.consoleui.controllers.infraestructure;
 
-import edu.sanvalero.actividadaprendizaje2.cli.Asker;
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
+import edu.sanvalero.actividadaprendizaje2.consoleui.Asker;
+import edu.sanvalero.actividadaprendizaje2.consoleui.controllers.domain.Controller;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.delete.GardenDeleter;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
@@ -19,7 +19,7 @@ public class GardenDeleterByCityNameController implements Controller {
     @Override
     public void invoke() {
         String rawCityName = askCityName();
-        deleter.deleteBy(rawCityName);
+        deleter.deleteByCityName(rawCityName);
     }
 
     private String askCityName() {

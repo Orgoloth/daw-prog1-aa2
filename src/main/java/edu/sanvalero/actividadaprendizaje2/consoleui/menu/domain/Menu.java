@@ -1,6 +1,6 @@
-package edu.sanvalero.actividadaprendizaje2.cli.menu.domain;
+package edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain;
 
-import edu.sanvalero.actividadaprendizaje2.cli.controllers.domain.Controller;
+import edu.sanvalero.actividadaprendizaje2.consoleui.controllers.domain.Controller;
 
 public class Menu {
     private final MenuDescription description;

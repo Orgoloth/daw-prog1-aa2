@@ -1,4 +1,4 @@
-package edu.sanvalero.actividadaprendizaje2.cli;
+package edu.sanvalero.actividadaprendizaje2.consoleui;
 
 import java.util.Scanner;
 
