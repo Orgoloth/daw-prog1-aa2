@@ -1,4 +1,4 @@
-#Enunciado de la práctica
+# Enunciado de la práctica
 
 De cada parque tendremos que almacenar el nombre, la extensión, la CCAA y la ciudad.
 
@@ -47,7 +47,7 @@ Parque
 
 ## Comentarios sobre el diseño
 
-Se pretende hacer uso de una arquitectura por capas, inversion de dependencias y value objects.
+Se pretende hacer uso de una arquitectura por capas, principio de responsabilidad única, inversion de dependencias y value objects, asi como dar semántica al código en la medida de lo posible, encapsulando las excepciones por ejemplo, intentado que el código sea comprensible sin comentarios.
 
 * infrastructure: conocido solo por el exterior y conoce solo la capa de aplicación, recoge valores primitivos o interactua con elementos externos, para evitar acoplamientos en capas mas internas con detalles de implementacion, como pueden ser bases de datos concretas o servicios externos que podrian cambiar en cualquier momento.
 * application: recogiendo los servicios de aplicación, que, recibiendo valores primitivos de la capa de infraestructura los convierte a valores o entidades de dominio para interactuar con ellos, solo es conocida por la capa de infraestructura y solo se conoce a si misma y a la capa de dominio, evitando acoplamientos innecesarios.
@@ -55,7 +55,7 @@ Se pretende hacer uso de una arquitectura por capas, inversion de dependencias y
 
 Mencion especial a los repositorios. Se definen como interfaz en la capa de dominio para que las entidades y los servicios de aplicacion puedan interactuar con ellos sin conocer detalles de implementación, pero se implementan en la capa de infraestructura por que la implementacion concreta debe conocer por necesidad detalles del servicio externo, como una base de datos en concreto.
 
-El código se ha dividido en tres modulos
+El código se ha dividido en tres modulos:
 
 * consoleui: para la logica relacionada directamente con la interaccíón con el usuario
 * gestion: para la logica de negocio
