@@ -45,7 +45,7 @@ Parque
 * Borrar todos los parques de una ciudad dada por nombre
 * Listar el nombre de todas las ciudades que contengan parques cuya suma total de su extensión, sea mayor que la que quiera el usuario.
 
-## Comentarios sobre el diseño
+# Comentarios sobre el diseño
 
 Se pretende hacer uso de una arquitectura por capas, principio de responsabilidad única, inversion de dependencias y value objects, asi como dar semántica al código en la medida de lo posible, encapsulando las excepciones por ejemplo, intentado que el código sea comprensible sin comentarios.
 
