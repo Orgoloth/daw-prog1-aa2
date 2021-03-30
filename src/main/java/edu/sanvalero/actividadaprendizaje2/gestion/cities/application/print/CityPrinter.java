@@ -18,9 +18,11 @@ public class CityPrinter {
     }
 
     public void printAll() {
+        System.out.println();
         for (City city : finder.all()) {
             print(city);
         }
+        System.out.println();
     }
 
     public void printByMinimumSumGardenExtensionOnCity(int rawMinimumSumGardenExtensionOnCity) {

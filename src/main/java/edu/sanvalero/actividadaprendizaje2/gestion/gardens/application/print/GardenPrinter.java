@@ -21,6 +21,18 @@ public class GardenPrinter {
         return new GardenPrinter(repository);
     }
 
+    public void printOneOrFailBy(String rawGardenName) {
+        Garden garden = finder.findOneOrFailBy(GardenName.create(rawGardenName));
+        print(garden);
+    }
+
+    public void printByName(String rawGardenName) {
+
+        for (Garden garden : finder.searchBy(GardenName.create(rawGardenName))) {
+            print(garden);
+        }
+    }
+
     public void printByCityName(String rawCityName) {
         for (Garden garden : finder.searchBy(CityName.create(rawCityName))) {
             print(garden);
@@ -29,12 +41,6 @@ public class GardenPrinter {
 
     public void printByCityRegion(String rawCityRegion) {
         for (Garden garden : finder.searchBy(CityRegion.create(rawCityRegion))) {
-            print(garden);
-        }
-    }
-
-    public void printByName(String rawGardenName) {
-        for (Garden garden : finder.searchBy(GardenName.create(rawGardenName))) {
             print(garden);
         }
     }
@@ -49,6 +55,6 @@ public class GardenPrinter {
     }
 
     private void printCount(Set<Garden> gardens, String rawCityName, int rawMinimumGardenExtension) {
-        System.out.printf("%n Se han encontrado %d jardines en %s con un mínimo de %d de extensión", gardens.size(), rawCityName, rawMinimumGardenExtension);
+        System.out.printf("Se han encontrado %d jardines en %s con un mínimo de %d de extensión.%n", gardens.size(), rawCityName, rawMinimumGardenExtension);
     }
 }

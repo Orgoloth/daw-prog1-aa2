@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class GardenRepositoryOracle implements GardenRepository {
     private final Connection connection;
@@ -27,7 +29,7 @@ public class GardenRepositoryOracle implements GardenRepository {
         String query = "INSERT INTO GARDENS VALUES(?, ?, ?, ?)";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
             sentence.setString(1, garden.id().toString());
-            sentence.setString(2, garden.name().toString());
+            sentence.setString(2, garden.name().value());
             sentence.setInt(3, garden.extension().value());
             sentence.setString(4, garden.city().id().toString());
 
@@ -38,24 +40,18 @@ public class GardenRepositoryOracle implements GardenRepository {
     }
 
     @Override
-    public Garden find(GardenId id) throws GardenNotFound {
-        String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS WHERE ID=?";
+    public void update(Garden garden) {
+        String query = "UPDATE GARDENS SET NAME=?, EXTENSION=?, CITY_ID=? WHERE ID=?";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {
-            sentence.setString(1, id.toString());
-            try (ResultSet results = sentence.executeQuery()) {
-                if (results.next()) {
-                    return Garden.create(
-                            GardenId.create(UUID.fromString(results.getString("ID"))),
-                            GardenName.create(results.getString("NAME")),
-                            GardenExtension.create(results.getInt("EXTENSION")),
-                            cityRepository.find(CityId.create(UUID.fromString(results.getString("CITY_ID"))))
-                    );
-                }
-            }
+            sentence.setString(1, garden.name().value());
+            sentence.setInt(2, garden.extension().value());
+            sentence.setString(3, garden.city().id().toString());
+            sentence.setString(4, garden.id().value().toString());
+
+            sentence.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("SQL: " + ex.getMessage());
         }
-        throw GardenNotFound.withId(id);
     }
 
     @Override
@@ -67,6 +63,19 @@ public class GardenRepositoryOracle implements GardenRepository {
         } catch (SQLException ex) {
             System.out.println("SQL: " + ex.getMessage());
             throw GardenNotFound.withId(id);
+        }
+    }
+
+    @Override
+    public Garden findOneOrFailBy(GardenName searchedGardenName) {
+        Set<Garden> found = searchBy(searchedGardenName);
+        checkNotEmpty(found, searchedGardenName);
+        return found.iterator().next();
+    }
+
+    private void checkNotEmpty(Set<Garden> found, GardenName searchedGardenName) {
+        if (found.isEmpty()) {
+            throw GardenNotFound.By(searchedGardenName);
         }
     }
 
@@ -142,7 +151,7 @@ public class GardenRepositoryOracle implements GardenRepository {
 
     @Override
     public Set<Garden> searchBy(CityName searchedCityName,
-                                       GardenExtension minimumGardenExtension) {
+                                GardenExtension minimumGardenExtension) {
         Set<Garden> found = new HashSet<>();
         String query = "SELECT ID, NAME, EXTENSION, CITY_ID FROM GARDENS WHERE EXTENSION >= ?";
         try (PreparedStatement sentence = connection.prepareStatement(query)) {

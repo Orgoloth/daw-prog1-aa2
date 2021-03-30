@@ -20,6 +20,10 @@ public class GardenFinder {
         return new GardenFinder(repository);
     }
 
+    public Garden findOneOrFailBy(GardenName gardenName) {
+        return repository.findOneOrFailBy(gardenName);
+    }
+
     public Set<Garden> searchBy(CityName filterCityName) {
         return repository.searchBy(filterCityName);
     }

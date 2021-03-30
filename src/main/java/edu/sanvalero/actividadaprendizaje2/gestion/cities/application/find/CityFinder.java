@@ -26,8 +26,8 @@ public class CityFinder {
         return new CityFinder(cityRepository, gardenRepository);
     }
 
-    public City searchFirstByName(CityName cityName) {
-        return repository.searchBy(cityName).iterator().next();
+    public City findOneOrFailByName(CityName cityName) {
+        return repository.findOneOrFailBy(cityName);
     }
 
     public Set<City> searchByMinimumSumGardenExtensionOnCity(GardenExtension filterMinimumSumGardenExtensionOnCity) {

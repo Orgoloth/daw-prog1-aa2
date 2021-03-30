@@ -19,6 +19,11 @@ public class CityRepositoryMemory implements CityRepository {
     }
 
     @Override
+    public City findOneOrFailBy(CityName cityName) throws CityNotFound {
+        throw CityNotFound.By(cityName);
+    }
+
+    @Override
     public Set<City> searchBy(CityName name) {
         return new HashSet<>(cities.values());
     }

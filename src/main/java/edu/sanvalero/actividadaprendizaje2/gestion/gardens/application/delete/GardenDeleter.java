@@ -1,8 +1,8 @@
 package edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.delete;
 
+import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.application.find.GardenFinder;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.Garden;
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenName;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 
 public class GardenDeleter {
@@ -19,7 +19,7 @@ public class GardenDeleter {
     }
 
     public void deleteByCityName(String rawCityName) {
-        for (Garden garden : finder.searchBy(GardenName.create(rawCityName))) {
+        for (Garden garden : finder.searchBy(CityName.create(rawCityName))) {
             repository.delete(garden.id());
         }
     }

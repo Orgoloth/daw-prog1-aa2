@@ -34,6 +34,11 @@ public class CityRepositoryDefault implements CityRepository {
     }
 
     @Override
+    public City findOneOrFailBy(CityName cityName) throws CityNotFound {
+        throw CityNotFound.By(cityName);
+    }
+
+    @Override
     public Set<City> searchBy(CityName cityName) {
         HashSet<City> citiesFound = new HashSet<>();
         for (City city : cities.values()) {

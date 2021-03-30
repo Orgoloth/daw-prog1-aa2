@@ -18,15 +18,19 @@ public class GardenRepositoryMemory implements GardenRepository {
     }
 
     @Override
+    public void update(Garden garden) {
+        gardens.put(garden.id(), garden);
+    }
+
+    @Override
     public void delete(GardenId id) throws GardenNotFound {
         checkGardenExists(id);
         gardens.remove(id);
     }
 
     @Override
-    public Garden find(GardenId id) throws GardenNotFound {
-        checkGardenExists(id);
-        return gardens.get(id);
+    public Garden findOneOrFailBy(GardenName searchedGardenName) {
+        throw GardenNotFound.By(searchedGardenName);
     }
 
     @Override

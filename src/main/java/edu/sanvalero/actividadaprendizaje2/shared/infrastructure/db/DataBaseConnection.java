@@ -12,7 +12,6 @@ public abstract class DataBaseConnection {
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("conectado");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

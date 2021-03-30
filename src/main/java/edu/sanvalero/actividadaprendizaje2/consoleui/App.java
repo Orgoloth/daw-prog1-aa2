@@ -6,12 +6,12 @@ import edu.sanvalero.actividadaprendizaje2.consoleui.menu.application.MenuCreato
 import edu.sanvalero.actividadaprendizaje2.consoleui.menu.application.MenuPrinter;
 import edu.sanvalero.actividadaprendizaje2.consoleui.menu.domain.MenuRepository;
 import edu.sanvalero.actividadaprendizaje2.consoleui.menu.infraestructure.MenuRepositoryMemory;
-import edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db.DataBaseConnection;
-import edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db.OracleDataBase;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.domain.CityRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.cities.infrastructure.CityRepositoryOracle;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenRepository;
 import edu.sanvalero.actividadaprendizaje2.gestion.gardens.infraestructure.GardenRepositoryOracle;
+import edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db.DataBaseConnection;
+import edu.sanvalero.actividadaprendizaje2.shared.infrastructure.db.OracleDataBase;
 
 import java.sql.Connection;
 
@@ -21,6 +21,9 @@ public final class App {
 
     private MenuRepository menuRepository;
 
+    /**
+     * Bucle principal del programa, solicitamos la funcion al usuario hasta que decida salir
+     */
     private App() {
         bootstrap();
         while (true) {
@@ -33,12 +36,18 @@ public final class App {
                     break;
                 }
                 invokedController.invoke();
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("Debe elegir una de las opciones presentadas");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         }
     }
 
+    /**
+     * Punto de entrada a la aplicacion
+     * @param args argumentos de la aplicación.
+     */
     public static void main(String[] args) {
         database = new OracleDataBase();
         new App();
@@ -71,8 +80,8 @@ public final class App {
                 GardenCreatorController.create(gardenRepository, cityRepository));
 
         menuCreator.create(
-                "(PENDIENTE) Actualizar la información de un parque.",
-                null);
+                "Actualizar la información de un parque.",
+                GardenUpdaterController.create(gardenRepository, cityRepository));
 
         menuCreator.create(
                 "Seleccionar todos los parques cuyo nombre contenga una determinada cadena.",
@@ -99,6 +108,9 @@ public final class App {
                 null);
     }
 
+    /**
+     * Clase para mostrar el menu por consola
+     */
     private void showMenu() {
         MenuPrinter menuPrinter = new MenuPrinter(menuRepository);
         System.out.println("\n\n COMANDOS DISPONIBLES:");

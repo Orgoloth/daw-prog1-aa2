@@ -1,7 +1,5 @@
 package edu.sanvalero.actividadaprendizaje2.shared.domain.valueobject;
 
-import edu.sanvalero.actividadaprendizaje2.gestion.gardens.domain.GardenExtension;
-
 public abstract class IntValueObject {
     protected final int value;
 

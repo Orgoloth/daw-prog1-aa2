@@ -48,6 +48,19 @@ public class CityRepositoryOracle implements CityRepository {
     }
 
     @Override
+    public City findOneOrFailBy(CityName searchedCityName) throws CityNotFound {
+        Set<City> found = searchBy(searchedCityName);
+        checkNotEmpty(found, searchedCityName);
+        return found.iterator().next();
+    }
+
+    private void checkNotEmpty(Set<City> found, CityName searchedCityName) {
+        if(found.isEmpty()){
+            throw CityNotFound.By(searchedCityName);
+        }
+    }
+
+    @Override
     public Set<City> searchBy(CityName cityName) {
         Set<City> found = new HashSet<>();
         String query = "SELECT ID, NAME, REGION FROM CITIES WHERE UPPER(NAME) LIKE UPPER(?)";

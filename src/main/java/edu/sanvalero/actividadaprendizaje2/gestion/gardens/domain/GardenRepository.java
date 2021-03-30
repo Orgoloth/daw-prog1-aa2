@@ -9,18 +9,20 @@ public interface GardenRepository {
 
     void save(Garden garden);
 
+    void update(Garden garden);
+
     void delete(GardenId id) throws GardenNotFound;
 
-    Garden find(GardenId id) throws GardenNotFound;
+    Garden findOneOrFailBy(GardenName searchedGardenName);
+
+    Set<Garden> searchBy(GardenName searchedGardenName);
 
     Set<Garden> searchBy(CityName searchedCityName);
 
     Set<Garden> searchBy(CityRegion searchedCityRegion);
 
-    Set<Garden> searchBy(GardenName searchedGardenName);
-
     Set<Garden> searchBy(CityName cityName,
-                                GardenExtension minimumGardenExtension);
+                         GardenExtension minimumGardenExtension);
 
     Set<Garden> all();
 
