@@ -32,3 +32,5 @@ target
 nbactions.xml
 
 *.iml
+
+!ojdbc7.jar
