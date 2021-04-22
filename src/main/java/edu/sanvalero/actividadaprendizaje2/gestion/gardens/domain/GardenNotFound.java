@@ -8,7 +8,7 @@ public class GardenNotFound extends IllegalArgumentException {
     }
 
     private GardenNotFound(GardenName searchedGardenName) {
-        super("El parque con la busqueda por nombre " + searchedGardenName.toString() + " no fue encontrado");
+        super("El parque con la búsqueda por nombre " + searchedGardenName.toString() + " no fue encontrado");
     }
 
     public static GardenNotFound withId(GardenId idNotFound) {

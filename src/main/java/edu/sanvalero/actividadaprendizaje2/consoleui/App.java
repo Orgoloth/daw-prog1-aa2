@@ -22,7 +22,7 @@ public final class App {
     private MenuRepository menuRepository;
 
     /**
-     * Bucle principal del programa, solicitamos la funcion al usuario hasta que decida salir
+     * Bucle principal del programa, solicitamos la función al usuario hasta que decida salir
      */
     private App() {
         bootstrap();
@@ -45,7 +45,7 @@ public final class App {
     }
 
     /**
-     * Punto de entrada a la aplicacion
+     * Punto de entrada a la aplicación
      * @param args argumentos de la aplicación.
      */
     public static void main(String[] args) {

@@ -13,9 +13,9 @@ public class CityRepositoryDefault implements CityRepository {
         defaultCities.add(new String[]{"Huesca", "Aragón"});
         defaultCities.add(new String[]{"Teruel", "Aragón"});
         defaultCities.add(new String[]{"Madrid", "Madrid"});
-        defaultCities.add(new String[]{"Sevilla", "Andalucia"});
-        defaultCities.add(new String[]{"Malaga", "Andalucia"});
-        defaultCities.add(new String[]{"Córdoba", "Andalucia"});
+        defaultCities.add(new String[]{"Sevilla", "Andalucía"});
+        defaultCities.add(new String[]{"Malaga", "Andalucía"});
+        defaultCities.add(new String[]{"Córdoba", "Andalucía"});
 
         defaultCities.forEach((data) -> save(
                 City.create(CityId.create(UUID.randomUUID()), CityName.create(data[0]), CityRegion.create(data[1]))));

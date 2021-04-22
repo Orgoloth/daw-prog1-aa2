@@ -71,4 +71,8 @@ El modulo gestion se divide en submodulos que representan las entidades del prob
 Cada submodulo se divide en tres grandes areas, atendiendo a la descripcion general de la arquitectura por capas indicada anteriormente.
 
 
+# Empaquetar con la dependencia del conector de base de datos
 
+Ejecutar: mvn clean compile assembly:single
+
+Generará el .jar ejecutable desde consola.

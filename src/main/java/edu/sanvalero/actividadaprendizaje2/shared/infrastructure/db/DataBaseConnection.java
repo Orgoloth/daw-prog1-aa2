@@ -10,9 +10,8 @@ public abstract class DataBaseConnection {
 
     public DataBaseConnection(String driver, String user, String password, String url) {
         try {
-            Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
